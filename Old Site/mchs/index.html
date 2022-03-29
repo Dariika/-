@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="my.css" />
         <link rel="stylesheet" href="css/leaflet.css" />
         <link rel="stylesheet" href="css/qgis2web.css" />
         <link rel="stylesheet" href="css/fontawesome-all.min.css" />
@@ -12,6 +13,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="pdf/pdfmake.min.js"></script>
         <script src="pdf/vfs_fonts.js"></script>
+        
+        <link rel="stylesheet" href="css/leaflet.css" />
 
         <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela" /> -->
         <style>
@@ -114,19 +117,32 @@
                         </div>
                     </div>
                 </a>
+
                 <div class="in_sidebar employee sbr">
                     <img src="images/user.svg" alt="" />
-                    <div class="select_emp">
-                        <input class="select__input" type="hidden" name="" />
-                        <div class="select__head" id="selected_emp">
-                            Выберите пользователя
+                    <div>
+
+                        <div class="select_emp">
+                            <input class="select__input" type="hidden" name="" />
+                            <div class="select__head" id="register-btn">
+                                Регистрация
+                            </div>
                         </div>
-                        <ul class="select__list" style="display: none">
-                            <li class="select__item">Иван Иванов</li>
-                            <li class="select__item">Егор Егоров</li>
-                            <li class="select__item">Петр Петров</li>
-                        </ul>
+                       
                     </div>
+                    
+                </div>
+
+                <div class="register-pane">
+                    <form id="register">
+                        <input name="username" placeholder="Логин"/><br>
+                        <input name="first_name" placeholder="Имя"/><br>
+                        <input name="last_name" placeholder="Фамилия"/><br>
+                        <input name="email" type="email" placeholder="email"/><br>
+                        <input name="password" type="password" placeholder="Пароль"/><br>
+                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                    </form>
                 </div>
 
                 <div class="in_sidebar anchors_bar sbr">
@@ -871,8 +887,10 @@
                 <img src="images/MASU_logo.svg" alt="" />
             </a>
         </div>
+        
         <script src="index.js"></script>
-        <script src="pdf/pdf.js"></script>
+        <script src="my.js"></script>
+        <script src="pdf/pdf.js"></script> 
         <script id="weathertown" src="assets/imgs/Варзуга/index.js"></script>
     </body>
 </html>
