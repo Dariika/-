@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela" /> -->
     <title>Моделирование ЧС</title>
@@ -61,18 +62,25 @@
                 </div>
                 
             </div></a>
+            <div id="overlay">
+                <div id="div-form">
+                    <form id="forms">                         
+                        <li><input name="username" placeholder="Логин"/><br></li>
+                        <li><input name="first_name" placeholder="Имя"/><br></li>
+                        <li> <input name="last_name" placeholder="Фамилия"/><br></li>
+                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                        <li><input name="password" type="password" placeholder="Пароль"/><br></li>
+                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                        <button>Регистрация</button>
+                    </form>
+                </div>
+            </div>
             <div class="in_sidebar employee sbr">
                 <img src="images/user.svg" alt="">
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
-                    <div class="select__head">Выберите пользователя</div>
-                    <ul class="select__list" style="display: none;">
-                        <li class="select__item">Иван Иванов</li>
-                        <li class="select__item">Егор Егоров</li>
-                        <li class="select__item">Кристина Кристинова Кристовична из Кристиновска</li>
-                    </ul>
-                </div>
-            </div>
+                    <div class="select__head" id="register-btn">Регистрация</div>
+                </div></div>
             <div class="in_sidebar anchors_bar sbr">
                 <ul>
                     <!-- <li><a href="#anchor1">2D карта</a></li>
@@ -129,5 +137,6 @@
     </div>
     
     <script src="index.js"></script>
+    <script src="my.js"></script>
 </body>
 </html>
