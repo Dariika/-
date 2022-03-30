@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela" /> -->
     <title>Моделирование ЧС</title>
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
 </head>
 <body>
 <!-- 
@@ -61,18 +64,31 @@
                 </div>
                 
             </div></a>
+            <div id="overlay">
+                <div id="div-form">
+                    <form id="forms">                         
+                        <li><input name="username" placeholder="Логин"/><br></li>
+                        <li><input name="first_name" placeholder="Имя"/><br></li>
+                        <li> <input name="last_name" placeholder="Фамилия"/><br></li>
+                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                        <li><input name="password" type="password" placeholder="Пароль"/><br></li>
+                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                        <button>Регистрация</button>
+                    </form>
+                </div>
+            </div>
             <div class="in_sidebar employee sbr">
                 <img src="images/user.svg" alt="">
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
-                    <div class="select__head">Выберите пользователя</div>
-                    <ul class="select__list" style="display: none;">
-                        <li class="select__item">Иван Иванов</li>
-                        <li class="select__item">Егор Егоров</li>
-                        <li class="select__item">Кристина Кристинова Кристовична из Кристиновска</li>
-                    </ul>
+<<<<<<< HEAD
+                    <div class="select__head" id="register-btn">Регистрация</div>
+                </div></div>
+=======
+                    <div class="select__head">Вход</div>
                 </div>
             </div>
+>>>>>>> 242a24975d14de31c3b2a33ae7fc193cb0ae9dd3
             <div class="in_sidebar anchors_bar sbr">
                 <ul>
                     <!-- <li><a href="#anchor1">2D карта</a></li>
@@ -114,10 +130,34 @@
     <div class="main_content">
         
         
-        <div class="weather mc">
-           <p class="mc_header" id="anchor2">В разработке</p>  
-            <hr>
-        </div>
+        <div id = "map" style = "width: 1130px; height: 680px"></div>
+<script>
+// Creating map options
+var mapOptions = {
+center: [67.598290, 33.746685],
+zoom: 13
+}
+
+// Creating a map object
+var map = new L.map('map', mapOptions);
+
+// Creating a Layer object
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{ attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+var latlngs = [
+[67.594737, 33.733145],
+[67.601152, 33.728142],
+[67.606744, 33.737543],
+[67.607994, 33.769972],
+[67.596612, 33.766953],
+[67.589208, 33.745564],
+[67.590393, 33.736853]
+];
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+
+
+</script> 
         
 
     </div>
@@ -129,5 +169,6 @@
     </div>
     
     <script src="index.js"></script>
+    <script src="my.js"></script>
 </body>
 </html>
