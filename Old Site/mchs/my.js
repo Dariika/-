@@ -1,4 +1,4 @@
-HOST = "http://localhost:8000"
+HOST = "https://projects.masu.edu.ru/lyamin/lavina_server"
 REGISTER = "/register"
 
 
