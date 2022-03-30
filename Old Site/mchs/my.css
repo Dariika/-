@@ -23,11 +23,11 @@
   }
 
 
-#overlay img {
+#overlay_img {
 
     position:absolute;
-    top:50%;
-    right:50%;
+    top:5px;
+    right:5px;
     z-index: 1;
 }
 

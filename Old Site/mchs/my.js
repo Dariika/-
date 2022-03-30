@@ -30,3 +30,6 @@ function on() {
   $("#register-btn").click(function(){
     $("#overlay").toggle();
 });
+
+$("#overlay_img").click(function(){
+  $("#overlay").toggle();});
