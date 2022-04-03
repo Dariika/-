@@ -83,6 +83,12 @@
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
                     <div class="select__head" id="register-btn">Регистрация</div>
+                    <div class="select__head" id="add-btn">
+                        Добавить
+                    </div>
+                    <div class="select__head" id="edit-btn">
+                        Редактировать
+                    </div>
                 </div></div>
             </div></div>
 
@@ -125,39 +131,9 @@
     </div> -->
 
     <div class="main_content">
-        
-        
         <div id = "map" style = "width: 1130px; height: 680px"></div>
-<script>
-// Creating map options
-var mapOptions = {
-center: [67.598290, 33.746685],
-zoom: 13
-}
-
-// Creating a map object
-var map = new L.map('map', mapOptions);
-
-// Creating a Layer object
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{ attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-var latlngs = [
-[67.594737, 33.733145],
-[67.601152, 33.728142],
-[67.606744, 33.737543],
-[67.607994, 33.769972],
-[67.596612, 33.766953],
-[67.589208, 33.745564],
-[67.590393, 33.736853]
-];
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
-
-
-</script> 
-        
-
     </div>
+    
     <div class="footer">
         <p>Проект разработат группой студентов МАГУ 3 курса Прикладной математики и информатики</p>
         <a href="https://www.mchs.gov.ru/" target="_blank">
@@ -166,6 +142,8 @@ var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
     </div>
     
     <script src="index.js"></script>
+    <script src="js/placeedit.js"></script>
     <script src="my.js"></script>
+
 </body>
 </html>
