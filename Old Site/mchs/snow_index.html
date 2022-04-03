@@ -65,17 +65,27 @@
                 
             </div></a>
             <div id="overlay">
-                <div id="div-form">
+                <div class="korpus" id="div-form">
                     <img src="cancel.png" id="overlay_img">
-                    <form id="forms">  
+                    <a onclick="vkladki('in',this);" href="javascript:void(0);" id="vkladka1">Вход</a>
+                    <a onclick="vkladki('reg',this);" href="javascript:void(0);">Регистрация</a>
+                    <div id="in" class="vid">
+                    <form id="forms">
                         <li><input name="username" placeholder="Логин"/><br></li>
-                        <li><input name="first_name" placeholder="Имя"/><br></li>
-                        <li> <input name="last_name" placeholder="Фамилия"/><br></li>
-                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
                         <li><input name="password" type="password" placeholder="Пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                        <input type="button" id="register-form-submit" value="Вход"></input>
+
                     </form>
+                  </div>
+                  <div id="reg" class="skryt">
+                    <form id="forms">
+                        <li><input name="first_name" placeholder="ФИО"/><br></li>
+                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                        <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
+                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                      </form></div>
                 </div>
             </div>
             <div class="in_sidebar employee sbr">
@@ -88,7 +98,10 @@
                     </div>
                     <div class="select__head" id="edit-btn">
                         Редактировать
-                    </div>
+                    </div><br>
+                <div align=center>
+                    <a href="" class="select__head">Добавить опасный участок</a>
+                </div>
                 </div></div>
             </div></div>
 
