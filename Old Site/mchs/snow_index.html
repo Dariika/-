@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="my.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
@@ -14,10 +13,8 @@
     <link rel = "stylesheet" href = "css/leaflet.css" />
     <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="js/leaflet.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Моделирование ЧС</title>
-    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
 </head>
 <body>
 
@@ -48,7 +45,7 @@
                  <div onclick="" class="hidden_faq">
                     <hr color="white">
                     <p>
-                    Это инструкция 
+                    Это инструкция
                     </p>
                 </div>
                 
@@ -64,6 +61,7 @@
                         <li><input name="password" type="password" placeholder="Пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
                         <input type="button" id="register-form-submit" value="Вход"></input>
+
                     </form>
                   </div>
                   <div id="reg" class="skryt">
@@ -91,6 +89,21 @@
                         <ul id="list_avalanches"></ul>
                     </div>
                 </div>
+                    <br>
+                <div align=center>
+                    <div id="add-btn" class="select__head">Добавить опасный участок</div>
+                    <button onclick='dobav()'>+</button>
+                    <div id="dobav">
+                        <form>
+                            <h1>Введите данные</h1>
+                            <li><input name="first_name" placeholder="что-то"/><br></li>
+                            <li><input name="email" type="text" placeholder="что-то"/><br></li>
+                            <input type="button" id="986515" value="Отправить"></input>
+                        </form> 
+                    </div>
+                </div>
+                </div></div>
+            </div></div>
             </div>
             
         </div>
