@@ -189,7 +189,7 @@ button:hover{
 }
 
 
-}
+
 .select__head.open::after {
     transform: translateY(50%) rotate(180deg);
 }
