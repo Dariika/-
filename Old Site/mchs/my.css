@@ -32,48 +32,49 @@
 }
 
 
-    #div-form{
-        display: block;
-        background-color: #1A4E87;
-        width: 299px;
-        height: 299px;
-        padding-top: 10px;
-        padding-bottom: 5px;
-        border-radius: 3px;
-        border: 2px solid #a8a8a8;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        z-index: 1;
-    }
+#div-form{
+    display: block;
+    background-color: #1A4E87;
+    width: 299px;
+    height: 310px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    border: 2px solid #a8a8a8;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
     
     
-    #forms {
-        margin: auto;
-        list-style: none;
-        z-index: 1;
-    }
-    #forms ul {
-        list-style-type: none;
-        padding-top: 10px;
-    }
+.forms {
+    margin: auto;
+    list-style: none;
+    z-index: 1;
+}
+
+.forms ul {
+    list-style-type: none;
+    padding-top: 10px;
+}
     
-    #forms li{
-        font-size: 16pt;
-        position: relative;
-        margin-left: 20px;
-        margin-bottom: 10px;
-    }
-    #forms li input{
-        border-radius: 3px;
-        border: 1px solid black;
-        height: 35px;
-        width: 250px;
+.forms li{
+    font-size: 16pt;
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.forms li input{
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 35px;
+    width: 250px;
+
+}
     
-    }
-    
-    #forms bun{
+.forms bun{
         border-radius: 3px;
         border: 1px solid #6C95C3;
         margin-top: 10px;
@@ -88,32 +89,33 @@
     
     }
 
-    #register-form-submit{
-        width: 225px;
-        max-width: 100%;
-        /* box-shadow: 0 0 4px rgb(0 0 0 / 20%); */
-        border-radius: 2px;
-        border: 1px solid #6C95C3;
-        padding: 10px 0px;
-        margin-left: 37px;
-        margin-right: auto;
-        font-size: 14px;
-        line-height: 18px;
-        color: rgba(255, 255, 255, 0.8);
-        cursor: pointer;
-        background-color: #6C95C3;
+input[type=button]{
+    width: 225px;
+    max-width: 100%;
+    /* box-shadow: 0 0 4px rgb(0 0 0 / 20%); */
+    border-radius: 2px;
+    border: 1px solid #6C95C3;
+    padding: 10px 0px;
+    margin-left: 37px;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    background-color: #6C95C3;
+}
+
+#forms label {
+    font-size: 16pt;
+}
+
+#leaflet-layer {
+    z-index: 2;
+    opacity: 1;
     }
+
+    #map{
     
-    #forms label {
-        font-size: 16pt;
+    height: 100vh;
+    z-index: 4;
     }
-
-    #leaflet-layer {
-        z-index: 2;
-        opacity: 1;
-      }
-
-      #map{
-        height: 100vh;
-        z-index: 4;
-        }

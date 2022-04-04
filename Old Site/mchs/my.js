@@ -1,5 +1,18 @@
 HOST = "https://projects.masu.edu.ru/lyamin/lavina_server"
 REGISTER = "/register"
+CSRF = "/crsf"
+LOGIN = "/login"
+
+// load and set CSRFToken
+$.ajax({
+  url: HOST + CSRF,
+  dataType: 'json'
+}).done(function (data){
+  console.log("Loaded token: "+data);
+  $.ajaxSetup({
+     headers: { 'X-CSRFToken':  data["X-CSRFToken"]} 
+    });
+});
 
 // Creating map options
 var mapOptions = {
@@ -100,14 +113,24 @@ $("#edit-btn").click(function(){
 });
 
 
-
-$("#register-form-submit").click(function(){
-    $.post( HOST + REGISTER, $('form#register').serialize(), function(data) {
+$("#register-submit-btn").click(function(){
+    $.post( HOST + REGISTER, $('#reg-form').serialize(), function(data) {
         console.log(data);
       },
       'json' 
    ),
    function(succes){
+    $("#overlay").hide();
+   };
+});
+
+$("#login-submit-btn").click(function(){
+  $.post( HOST + LOGIN, $('#login-form').serialize(), function(data) {
+    console.log(data);
+  },
+  'json' 
+  ),
+  function(succes){
     $("#overlay").hide();
    };
 });
