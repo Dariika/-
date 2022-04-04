@@ -1,4 +1,4 @@
-.register-pane{
+.register-pane {
     position: absolute;
     z-index: 1000;
     background-color: darkcyan;
@@ -10,24 +10,188 @@
 /* craeted by dmitriy*/
 
 #overlay {
-    position: fixed; /* Sit on top of the page content */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
+    display: None;
+    position: fixed;
+    /* Sit on top of the page content */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-  }
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 1;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
 
 
 #overlay_img {
 
-    position:absolute;
-    top:5px;
-    right:5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+}
+
+
+#div-form {
+    display: block;
+    background-color: #1A4E87;
+    width: 299px;
+    height: 299px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    border: 2px solid #a8a8a8;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+
+#forms {
+    margin: auto;
+    list-style: none;
+    z-index: 1;
+}
+
+#forms ul {
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+#forms li {
+    font-size: 16pt;
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+#forms li input {
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 35px;
+    width: 250px;
+
+}
+
+#forms bun {
+    border-radius: 3px;
+    border: 1px solid #6C95C3;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    font-size: 14pt;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #6C95C3;
+
+}
+
+#register-form-submit {
+    width: 225px;
+    max-width: 100%;
+    /* box-shadow: 0 0 4px rgb(0 0 0 / 20%); */
+    border-radius: 2px;
+    border: 1px solid #6C95C3;
+    padding: 10px 0px;
+    margin-left: 37px;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    background-color: #6C95C3;
+}
+
+#forms label {
+    font-size: 16pt;
+}
+
+#leaflet-layer {
+    z-index: 4;
+    opacity: 1;
+}
+
+#map {
+
+    height: 100vh;
+    z-index: 4;
+}
+
+#menu{
+    margin-left: 15px;
+    margin-bottom: 15px;
+    background-color: #6c95c3;
+    display: block;
+    padding: 0;
+    width: 225px;
+    z-index: 1;
+
+}
+
+
+#menu ul { /* убираем отступы и поля, а также list-style для "ul", и добавляем "position:relative" */
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: relative;
+
+}
+
+
+#menu ul li { /* применяем inline-block позиционирование к элементам навигации */
+    margin: 0;
+    display:inline-block;
+    background-color: #6c95c3;
+    width: 225px;
+}
+
+
+#menu a { /* стилизуем ссылки */
+    display:block;
+    padding:0 10px;
+    color:#FFF;
+    font-size:14pt;
+    line-height: 47px;
+    text-decoration:none;
+    text-align: center;
+}
+
+
+#menu a:hover { /* изменяем цвет фона при наведении курсора */
+    background-color: #3587e5;
+}
+
+
+#menu ul ul {
+    /* скрываем выпадающие списки по умолчанию и задаем абсолютное позиционирование */
+    display: none;
+    z-index: 1;
+}
+
+
+#menu ul li:hover>ul {
+    /* отображаем выпадающий список при наведении */
+    display: inherit;
+    z-index: 1;
+}
+
+
+#menu ul ul li {
+    /* первый уровень выпадающего списка */
+    float: none;
+    display: list-item;
+    position: relative;
     z-index: 1;
 }
 

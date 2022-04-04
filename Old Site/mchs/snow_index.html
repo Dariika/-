@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.css" />
@@ -95,6 +96,18 @@
                 <div class="select__head">
                     
                     <button onclick='dobav()' >Добавить опасный участок</button>
+                        Редактировать
+                    </div>
+                    
+                </div>
+                    <br>
+
+                    <div id="menu">
+                        <ul><li><a>Участки</a><ul id="list_avalanches"></ul></li></ul>
+                    </div>
+                <div>
+                    <div id="add-btn" class="select__head">Добавить опасный участок</div>
+                    <button onclick='dobav()'>+</button>
                     <div id="dobav">
                         <form>
                             <h1>Введите данные</h1>
@@ -152,6 +165,7 @@
     </div> -->
 
     <div class="main_content">
+        
         
         <div id = "map"></div>
     
