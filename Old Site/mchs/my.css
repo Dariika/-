@@ -112,3 +112,9 @@
         z-index: 2;
         opacity: 1;
       }
+
+      #map{
+        width: 1130px;
+        height: 680px;
+        z-index: 4;
+        }
