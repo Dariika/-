@@ -3,8 +3,8 @@ REGISTER = "/register"
 
 // Creating map options
 var mapOptions = {
-center: [67.598290, 33.746685],
-zoom: 13
+center: [67.763510, 34.135140],
+zoom: 9
 }
 
 // Creating a map object
@@ -14,16 +14,7 @@ var map = new L.map('map', mapOptions);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-var latlngs = [
-[67.594737, 33.733145],
-[67.601152, 33.728142],
-[67.606744, 33.737543],
-[67.607994, 33.769972],
-[67.596612, 33.766953],
-[67.589208, 33.745564],
-[67.590393, 33.736853]
-];
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+
 
 function getPlaces(){
   return [
@@ -34,11 +25,13 @@ function getPlaces(){
         "type": "Polygon",
         "coordinates": [
           [
-            [67.750002, 33.666639], 
-            [67.749995, 33.666714], 
-            [67.749978, 33.666646], 
-            [67.749992, 33.666577], 
-            [67.750002, 33.666639]
+            [67.594737, 33.733145],
+            [67.601152, 33.728142],
+            [67.606744, 33.737543],
+            [67.607994, 33.769972],
+            [67.596612, 33.766953],
+            [67.589208, 33.745564],
+            [67.590393, 33.736853]
           ]
         ]
       }
@@ -65,11 +58,11 @@ function getPlaces(){
         "type": "Polygon",
         "coordinates": [
           [
-            [67.750074, 33.666997], 
-            [67.750064, 33.667019], 
-            [67.750049, 33.666931], 
-            [67.750091, 33.666873], 
-            [67.750074, 33.666997], 
+            [67.834847, 33.801198], 
+            [67.837821, 33.814425], 
+            [67.824867, 33.844060], 
+            [67.821973, 33.817643], 
+            [67.821973, 33.817643], 
           ]
         ]
       }
@@ -137,3 +130,27 @@ function on() {
 
 $("#overlay_img").click(function(){
   $("#overlay").toggle();});
+
+let p = getPlaces()
+
+for (let a in p){
+  L.polygon(p[a].geometry.coordinates, {color: 'red'}).addTo(map);
+}
+
+$.each(p, function(i,item){
+
+  var li = $('<li/>')
+  .appendTo('#list_avalanches');
+  $('<a />')
+  .text(item.name)
+  .attr('href', '#')
+  .on('click', function(){showAvalanche(i)})
+  .appendTo(li);  
+})
+
+
+
+function showAvalanche(id){
+  console.log(p[id].geometry.coordinates[0][0])
+  map.setView(p[id].geometry.coordinates[0][0], 12);
+}
