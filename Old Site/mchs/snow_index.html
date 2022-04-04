@@ -95,8 +95,16 @@
                     <div class="select__head" id="register-btn">Регистрация</div>
                 </div>
                     <br>
-                <div align=center>
-                    <div id="add-btn" class="select__head">Добавить опасный участок</div>
+                <div align=center class="select__head">
+                    <a onclick="vkladki('dobav',this);" href="javascript:void(0);" id="add-btn">Добавить опасный участок</a>
+                    <div id="dobav" class="vid">
+                        <form id="forms">
+                            <li><input name="first_name" placeholder="ФИО"/><br></li>
+                            <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                            <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
+                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                            <input type="button" id="register-form-submit" value="Регистрация"></input>
+                          </form></div>
                 </div>
                 </div></div>
             </div></div>
