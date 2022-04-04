@@ -60,7 +60,7 @@
                         <li><input name="username" placeholder="Логин"/><br></li>
                         <li><input name="password" type="password" placeholder="Пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Вход"></input>
+                        <input type="button" id="register-form-submit" value="Войти"></input>
 
                     </form>
                   </div>
@@ -70,7 +70,7 @@
                         <li><input name="email" type="email" placeholder="E-mail"/><br></li>
                         <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                        <input type="button" id="register-form-submit" value="Зарегистрироваться"></input>
                       </form></div>
                 </div>
             </div>
@@ -78,27 +78,27 @@
                 <img src="images/user.svg" alt="">
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
-                    <div class="select__head" id="register-btn">Регистрация</div>
-                    <div class="select__head" id="add-btn">
-                        Добавить
-                    </div>
+                    <div class="select__head" id="register-btn"><button>Регистрация</button></div><br></div>
+                    
                     <div class="select__head" id="edit-btn">
-                        Редактировать
-                    </div>
+                        <button>Редактировать</button>
+                    </div><br>
                     <div class="select__head">
                         <ul id="list_avalanches"></ul>
                     </div>
-                </div>
+                
                     <br>
-                <div align=center>
-                    <div id="add-btn" class="select__head">Добавить опасный участок</div>
-                    <button onclick='dobav()'>+</button>
+                <div class="select__head">
+                    
+                    <button onclick='dobav()' >Добавить опасный участок</button>
                     <div id="dobav">
                         <form>
                             <h1>Введите данные</h1>
-                            <li><input name="first_name" placeholder="что-то"/><br></li>
-                            <li><input name="email" type="text" placeholder="что-то"/><br></li>
-                            <input type="button" id="986515" value="Отправить"></input>
+                            <li><input name="sm" placeholder="что-то"/><br></li>
+                            <li><input name="sm" type="text" placeholder="что-то"/><br></li>
+                            <div id="add-btn">
+                                <button>Отметить место на карте</button>
+                            </div>
                         </form> 
                     </div>
                 </div>
