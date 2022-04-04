@@ -250,6 +250,7 @@ a{
     padding-bottom: 15px;
     height: auto;
     background-color: #EBEBEB;
+    z-index: 2;
 }
 .mc{
     position: relative;

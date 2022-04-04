@@ -18,7 +18,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
   }
 
@@ -45,12 +45,14 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%,-50%);
+        z-index: 1;
     }
     
     
     #forms {
         margin: auto;
         list-style: none;
+        z-index: 1;
     }
     #forms ul {
         list-style-type: none;
@@ -106,3 +108,13 @@
         font-size: 16pt;
     }
 
+    #leaflet-layer {
+        z-index: 2;
+        opacity: 1;
+      }
+
+      #map{
+        width: 1130px;
+        height: 680px;
+        z-index: 4;
+        }
