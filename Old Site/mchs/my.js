@@ -8,7 +8,7 @@ zoom: 9
 }
 
 // Creating a map object
-var map = new L.map('map', mapOptions);
+var map = L.map('map', mapOptions);
 
 // Creating a Layer object
 

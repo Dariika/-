@@ -7,30 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="my.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/qgis2web.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/leaflet-measure.css" />
+    <link rel = "stylesheet" href = "css/leaflet.css" />
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="js/leaflet.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela" /> -->
     <title>Моделирование ЧС</title>
     <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
 </head>
 <body>
-<!-- 
-Список TO DO:
-    сейчас
-        ? выдвижной F.A.Q.
-        подключить интерактивную карту со слоями
-        подключить и понятно изобразить погоду
-        подключить гифку 3дшную
-        ? сделать видимость существования других страниц?
-    позже:
-        реализовать  выбор пользователя 
-        реализовать загрузку отчёта
-        другие сервисы?
-
- -->
-
-
-
-
 
     <div class="sidebar">
         <div class="in_sidebar choice_bar">
@@ -59,23 +48,32 @@
                  <div onclick="" class="hidden_faq">
                     <hr color="white">
                     <p>
-                    Это инструкция
+                    Это инструкция 
                     </p>
                 </div>
                 
             </div></a>
             <div id="overlay">
-                <div id="div-form">
+                <div class="korpus" id="div-form">
                     <img src="cancel.png" id="overlay_img">
-                    <form id="forms">  
+                    <a onclick="vkladki('in',this);" href="javascript:void(0);" id="vkladka1">Вход</a>
+                    <a onclick="vkladki('reg',this);" href="javascript:void(0);">Регистрация</a>
+                    <div id="in" class="vid">
+                    <form id="forms">
                         <li><input name="username" placeholder="Логин"/><br></li>
-                        <li><input name="first_name" placeholder="Имя"/><br></li>
-                        <li> <input name="last_name" placeholder="Фамилия"/><br></li>
-                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
                         <li><input name="password" type="password" placeholder="Пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                        <input type="button" id="register-form-submit" value="Вход"></input>
                     </form>
+                  </div>
+                  <div id="reg" class="skryt">
+                    <form id="forms">
+                        <li><input name="first_name" placeholder="ФИО"/><br></li>
+                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                        <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
+                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                      </form></div>
                 </div>
             </div>
             <div class="in_sidebar employee sbr">
@@ -83,20 +81,21 @@
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
                     <div class="select__head" id="register-btn">Регистрация</div>
-                    <div class="select__head" id="add-btn">
-                        Добавить
-                    </div>
-                    <div class="select__head" id="edit-btn">
-                        Редактировать
-                    </div>
-                    <div class="select__head">
-                        <ul id="list_avalanches"></ul>
-                    </div>
                 </div>
-            </div>
-            
-        </div>
-    </div>
+                    <br>
+                <div align=center class="select__head">
+                    <a onclick="vkladki('dobav',this);" href="javascript:void(0);" id="add-btn">Добавить опасный участок</a>
+                    <div id="dobav" class="vid">
+                        <form id="forms">
+                            <li><input name="first_name" placeholder="ФИО"/><br></li>
+                            <li><input name="email" type="email" placeholder="E-mail"/><br></li>
+                            <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
+                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                            <input type="button" id="register-form-submit" value="Регистрация"></input>
+                          </form></div>
+                </div>
+                </div></div>
+            </div></div>
 
             <div class="in_sidebar anchors_bar sbr">
                 <ul>
@@ -137,7 +136,9 @@
     </div> -->
 
     <div class="main_content">
+        
         <div id = "map" style = "width: 1130px; height: 680px"></div>
+    
     </div>
     
     <div class="footer">
