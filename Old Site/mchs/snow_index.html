@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="my.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
@@ -16,6 +16,9 @@
     <script src="js/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Моделирование ЧС</title>
+    <link rel="stylesheet" href="my.css" />
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
 </head>
 <body>
 
@@ -57,21 +60,22 @@
                     <a onclick="vkladki('in',this);" href="javascript:void(0);" id="vkladka1">Вход</a>
                     <a onclick="vkladki('reg',this);" href="javascript:void(0);">Регистрация</a>
                     <div id="in" class="vid">
-                    <form id="forms">
+                    <form class="forms" id="login-form">
                         <li><input name="username" placeholder="Логин"/><br></li>
                         <li><input name="password" type="password" placeholder="Пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Вход"></input>
-
+                        <input type="button" id="login-submit-btn" value="Вход"></input>
                     </form>
                   </div>
-                  <div id="reg" class="skryt">
-                    <form id="forms">
-                        <li><input name="first_name" placeholder="ФИО"/><br></li>
+                  <div id="reg"  class="skryt">
+                    <form class="forms" id="reg-form">
+                        <li><input name="username" placeholder="Логин"/><br></li>
+                        <li><input name="first_name" placeholder="Имя"/><br></li>
+                        <li><input name="last_name" placeholder="Фамилия"/><br></li>
                         <li><input name="email" type="email" placeholder="E-mail"/><br></li>
                         <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
                         <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-form-submit" value="Регистрация"></input>
+                        <input type="button" id="register-submit-btn" value="Регистрация"></input>
                       </form></div>
                 </div>
             </div>
