@@ -114,7 +114,7 @@
       }
 
       #map{
-        width: 1130px;
-        height: 680px;
+        
+        height: 100vh;
         z-index: 4;
         }
