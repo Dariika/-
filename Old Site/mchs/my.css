@@ -128,7 +128,7 @@
     z-index: 4;
 }
 
-#menu{
+#menu {
     margin-left: 15px;
     margin-bottom: 15px;
     background-color: #6c95c3;
@@ -140,35 +140,39 @@
 }
 
 
-#menu ul { /* убираем отступы и поля, а также list-style для "ul", и добавляем "position:relative" */
-    padding:0;
-    margin:0;
+#menu ul {
+    /* убираем отступы и поля, а также list-style для "ul", и добавляем "position:relative" */
+    padding: 0;
+    margin: 0;
     list-style: none;
     position: relative;
 
 }
 
 
-#menu ul li { /* применяем inline-block позиционирование к элементам навигации */
+#menu ul li {
+    /* применяем inline-block позиционирование к элементам навигации */
     margin: 0;
-    display:inline-block;
+    display: inline-block;
     background-color: #6c95c3;
     width: 225px;
 }
 
 
-#menu a { /* стилизуем ссылки */
-    display:block;
-    padding:0 10px;
-    color:#FFF;
-    font-size:14pt;
+#menu a {
+    /* стилизуем ссылки */
+    display: block;
+    padding: 0 10px;
+    color: #FFF;
+    font-size: 14pt;
     line-height: 47px;
-    text-decoration:none;
+    text-decoration: none;
     text-align: center;
 }
 
 
-#menu a:hover { /* изменяем цвет фона при наведении курсора */
+#menu a:hover {
+    /* изменяем цвет фона при наведении курсора */
     background-color: #3587e5;
 }
 
@@ -196,7 +200,7 @@
 }
 
 
-#div-form{
+#div-form {
     display: block;
     background-color: #1A4E87;
     width: 299px;
@@ -208,11 +212,11 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
-    
-    
+
+
 .forms {
     margin: auto;
     list-style: none;
@@ -223,37 +227,38 @@
     list-style-type: none;
     padding-top: 10px;
 }
-    
-.forms li{
+
+.forms li {
     font-size: 16pt;
     position: relative;
     margin-left: 20px;
     margin-bottom: 10px;
 }
-.forms li input{
+
+.forms li input {
     border-radius: 3px;
     border: 1px solid black;
     height: 35px;
     width: 250px;
 
 }
-    
-.forms bun{
-        border-radius: 3px;
-        border: 1px solid #6C95C3;
-        margin-top: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 200px;
-        font-size: 14pt;
-        color: white;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        background-color: #6C95C3;
-    
-    }
 
-input[type=button]{
+.forms bun {
+    border-radius: 3px;
+    border: 1px solid #6C95C3;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    font-size: 14pt;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #6C95C3;
+
+}
+
+input[type=button] {
     width: 225px;
     max-width: 100%;
     /* box-shadow: 0 0 4px rgb(0 0 0 / 20%); */
@@ -276,10 +281,41 @@ input[type=button]{
 #leaflet-layer {
     z-index: 2;
     opacity: 1;
-    }
+}
 
-    #map{
-    
+#map {
+
     height: 100vh;
     z-index: 4;
-    }
+}
+
+
+.weather__title {display: inline;}
+.weather__icon {display:inline}
+.weather__forecast{display:inline; }
+
+.weather__icon img {display: inline !important; margin:0 !important; vertical-align: middle;}
+
+
+#inl {display: inline;}
+
+.weather {
+    z-index: 5;
+    position: fixed;
+    left: 365px;
+    top: 0;
+    width: 100%;
+    font-size: 20px;
+    background-color: #D8D8D8;
+    height: 30px;
+}
+
+.main_content {
+    margin-left: 0 !important;
+    margin-top: 65px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    height: auto;
+    background-color: #EBEBEB;
+    z-index: 2;
+}
