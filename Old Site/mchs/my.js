@@ -97,9 +97,6 @@ function onPlaceDeleted(place){
   
 }
 
-$("#add-btn").click(function(){
-   placeEditor.startAdd();
-});
 
 $("#edit-btn").click(function(){
   placeEditor.startEdit(polygons[polygons.length - 1]);
@@ -187,3 +184,4 @@ function showAvalanche(id){
   console.log(p[id].geometry.coordinates[0][0])
   map.setView(p[id].geometry.coordinates[0][0], 12);
 }
+
