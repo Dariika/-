@@ -1,5 +1,5 @@
 function setDefault() {
-  fetch('http://api.openweathermap.org/data/2.5/weather?lat=67.766061&lon=34.132252&appid=5d20f14e98068a911f39ac24389c3aa5').then(function (resp) { return resp.json() }).then(function (data) {
+  fetch('https://api.openweathermap.org/data/2.5/weather?lat=67.766061&lon=34.132252&appid=5d20f14e98068a911f39ac24389c3aa5').then(function (resp) { return resp.json() }).then(function (data) {
 
     document.querySelector('.weather__title').textContent = "Мурманская область";
     document.querySelector('.weather__forecast').innerHTML = Math.round(data.main.temp - 273) + '&deg;C';
@@ -200,7 +200,7 @@ function showAvalanche(id) {
   lon = p[id].geometry.coordinates[0][0][1];
   appkey = '5d20f14e98068a911f39ac24389c3aa5';
   title = p[id].name;
-  fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appkey}`).then(function (resp) { return resp.json() }).then(function (data) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appkey}`).then(function (resp) { return resp.json() }).then(function (data) {
     document.querySelector('.weather__title').textContent = title;
     document.querySelector('.weather__forecast').innerHTML = Math.round(data.main.temp - 273) + '&deg;C';
     document.querySelector('.weather__icon').innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" width=50 height=50>`;
