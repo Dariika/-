@@ -119,7 +119,11 @@ $("#register-submit-btn").click(function(){
 $("#login-submit-btn").click(function(){
   login($('#login-form').serialize(), function(data){
     console.log(data);
+    current_user = data;
     $("#overlay").hide();
+  }, function(data){
+    console.log("login failed");
+    console.log(data);
   });
 });
 //created by dmitriy
