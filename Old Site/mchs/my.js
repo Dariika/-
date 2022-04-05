@@ -7,12 +7,6 @@ zoom: 9
 // если user == null или для группы regular_user 
 // добавление участков должно быть недоступно
 // при выходе user = null
-let current_user = {
-  "username": "test_user",
-  "fio": "John Smith",
-  "group": "regular_user"
-};
-
 
 
 // Creating a map object
