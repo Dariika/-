@@ -18,7 +18,7 @@ function __post(url, data, ondonecallback, onfailcallback = null){
     $.post({
         'url': url,
         'data': data,
-        'contentType': 'application/json; charset=utf-8'})
+        'dataType': 'json'})
     .done(ondonecallback)
     .fail(onfailcallback);
 }
