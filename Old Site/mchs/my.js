@@ -93,6 +93,11 @@ $("#edit-btn").click(function(){
   placeEditor.startEdit(polygons[polygons.length - 1]);
 });
 
+$("#vixod").click(function(){
+  if(user != null){
+    logout(onLogout);
+  }
+});
 
 tryFetchCurrentUser(onUserLoad, onLogout);
 
@@ -122,8 +127,6 @@ function onLogout(data){
     $("#current_user_fio").hide();
 }
 
-//  для выхода: вызвать logout(onLogout);
-// user при этом должен быть не null
 
 $("#register-submit-btn").click(function(){
   register($('#reg-form').serialize(), function(data){
