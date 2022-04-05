@@ -12,6 +12,15 @@ zoom: 9
   "fio": "John Smith",
   "group": "regular_user"
 }
+window.onload = function(){
+  if (current_user == null){
+      print_us.innerHTML="привет мир!";
+  } else{
+    print_us.innerHTML="Здравствуйте"+current_user.username;
+    document.getElementById('vixod').style.display = 'block';
+    document.getElementById('register-btn').style.display = 'none;
+  }
+}
 
 // Creating a map object
 var map = L.map('map', mapOptions);
