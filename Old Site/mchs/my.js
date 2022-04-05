@@ -10,7 +10,6 @@ window.onload = function(){
   } else{
     print_us.innerHTML="Здравствуйте"+current_user.username;
     document.getElementById('vixod').style.display = 'block';
-    document.getElementById('register-btn').style.display = 'none;
   }
 }
 
