@@ -63,29 +63,34 @@
                 </div>
             </a>
             <div id="overlay">
-                <div class="korpus" id="div-form">
+                <div id="div-form">
                     <img src="cancel.png" id="overlay_img">
-                    <a onclick="vkladki('in',this);" href="javascript:void(0);" id="vkladka1">Вход</a>
-                    <a onclick="vkladki('reg',this);" href="javascript:void(0);">Регистрация</a>
-                    <div id="in" class="vid">
-                        <form class="forms" id="login-form">
-                            <li><input name="username" placeholder="Логин" /><br></li>
-                            <li><input name="password" type="password" placeholder="Пароль" /><br></li>
-                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                            <input type="button" id="login-submit-btn" value="Вход"></input>
-                        </form>
+                    <div class="pane-content">
+                        <div class="vkladki-toggle" id="in-toggle">Вход</div>
+                        <div class="vkladki-toggle" id="reg-toggle">Регистрация</div>
+                        <div class="tab-container">
+                            <div id="in">
+                                <form class="forms" id="login-form">
+                                    <input name="username" placeholder="Логин" /><br>
+                                    <input name="password" type="password" placeholder="Пароль" /><br>
+                                    <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                                    <input type="button" id="login-submit-btn" value="Вход"></input>
+                                </form>
+                            </div>
+                            <div id="reg" style="display: none;">
+                                <form class="forms" id="reg-form">
+                                    <input name="username" placeholder="Логин" /><br>
+                                    <input name="first_name" placeholder="Имя" /><br>
+                                    <input name="last_name" placeholder="Фамилия" /><br>
+                                    <input name="email" type="email" placeholder="E-mail" /><br>
+                                    <input name="password" type="password" placeholder="Придумайте пароль" /><br>
+                                    <input type="button" id="register-submit-btn" value="Регистрация"></input>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div id="reg" class="skryt">
-                        <form class="forms" id="reg-form">
-                            <li><input name="username" placeholder="Логин" /><br></li>
-                            <li><input name="first_name" placeholder="Имя" /><br></li>
-                            <li><input name="last_name" placeholder="Фамилия" /><br></li>
-                            <li><input name="email" type="email" placeholder="E-mail" /><br></li>
-                            <li><input name="password" type="password" placeholder="Придумайте пароль" /><br></li>
-                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                            <input type="button" id="register-submit-btn" value="Регистрация"></input>
-                        </form>
-                    </div>
+                    
+                    
                 </div>
             </div>
             <div class="in_sidebar employee sbr">
@@ -102,21 +107,23 @@
                         <li><a onclick="setDefault()">Участки</a>
                             <ul id="list_avalanches"></ul>
                         </li>
+                       
                     </ul>
                 </div>
-                <div class="select__head" id="add-pane" style="display: none;">
+                <div  id="add-pane" style="display: none;">
                     <div id="add">
-                        <button onclick='dobav()'>Добавить опасный участок</button>
-                    <div id="dobav">
-                        <form>
-                            <h1>Введите данные</h1>
-                            <input name="sm" placeholder="Название" /><br>
-                            <div id="add-btn">
-                                Отметить место на карте
-                            </div>
-                            <button onclick='ubrat()'>Отмена</button>
-                        </form>
-                    </div>
+                        <div class="dobav-toggle select__head">
+                            Добавить опасный участок
+                        </div>
+                        <div id="dobav" style="display: none;">
+                            <form id="place-add-form" class="forms">
+                                <input name="place-name" placeholder="Название участка" /><br>
+                                <span id="place-selected" style="display: none;">Участок выбран ✓</span><br>
+                                <input type="button" id="add-place-btn" value="Отметить место на карте"></input><br>
+                                <input type="button" id="submit-place-btn" value="Сохранить"></input><br>
+                                <input type="button" class="dobav-toggle" value="Отмена"></input>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

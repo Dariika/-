@@ -88,8 +88,10 @@ let placeEditor = new PlaceEditor(map,
   onPlaceDeleted);
 
 function onPlaceAdded(polygon) {
+  currentPoly = polygon;
+  $("#place-selected").show();
+  $("#add-place-btn").val("Отметить заново");
   polygon.addTo(map);
-  polygons.push(polygon);
 }
 
 function onPlaceUpdated(place) {
@@ -100,7 +102,16 @@ function onPlaceDeleted(place) {
 
 }
 
-$("#add-btn").click(function(){
+function removePoly(){
+  if(currentPoly != null) {
+    map.removeLayer(currentPoly);
+    currentPoly = null;
+  }
+}
+
+$("#add-place-btn").click(function(){
+  removePoly();
+  $("#place-selected").hide();
   placeEditor.startAdd();
 });
 
@@ -165,6 +176,45 @@ $("#login-submit-btn").click(function () {
     console.log(data);
   });
 });
+
+let currentPoly = null;
+
+$(".dobav-toggle").click(function(){
+  $("#dobav").toggle();
+  removePoly();
+  $("#place-selected").hide();
+  $("#add-place-btn").val("Отметить место на карте");
+});
+
+
+
+$("#reg-toggle").toggleClass('tab-inactive');
+$("#in-toggle").toggleClass('tab-active');
+
+$(".vkladki-toggle").click(function(){
+  $("#in").toggle();
+  $("#reg").toggle();
+  $("#reg-toggle").toggleClass('tab-inactive');
+  $("#reg-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-inactive');
+});
+
+$("#submit-place-btn").click(function(){
+  // TODO: 
+  let placeName = $("input[name=place-name]").val().trim();
+  if(placeName == ""){
+    alert("Введите название участка!");
+    return;
+  }
+  if(currentPoly == null){
+    alert("Выберите участок на карте!");
+    return;
+  }
+  // add here
+});
+
+
 
 //created by dmitriy
 

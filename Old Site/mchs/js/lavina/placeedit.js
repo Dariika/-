@@ -19,12 +19,6 @@ class PlaceEditor{
         this._d = this.__defaultMoveHandler.bind(this);
         this._markerClick = this.__markerOnClick.bind(this);
         this.currentIndex = -1;
-        this.updateDone = function update (e){
-            if(e.originalEvent.key == "D" && this.polygonCoords > 2){
-                this.map.off('keypress', update);
-                this.onUpdateHandler(this.__clear());
-            }
-        };
     }
 
     startAdd(){
@@ -42,7 +36,6 @@ class PlaceEditor{
         this.currentPoly.addTo(map);
         this.__createMarkers(polygon);
         this.map.removeLayer(polygon);
-        this.map.on('keypress', this.updateDone);
     }
 
     __installHandlers(mode){
