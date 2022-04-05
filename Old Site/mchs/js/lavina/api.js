@@ -4,7 +4,7 @@ CSRF = "/crsf"
 LOGIN = "/login"
 LOGOUT = "/logout"
 WHOAMI = "/whoami"
-WHOAMI = "/places"
+PLACES = "/places"
 
 let current_user = null;
 

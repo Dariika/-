@@ -117,11 +117,6 @@ $("#vixod").click(function(){
 tryFetchCurrentUser(onUserLoad, onLogout);
 
 function onUserLoad(data){
-  // TODO: this
-  if(Array.isArray(data)){
-    onLogout("a");
-    return;
-  }
   current_user = data;
   fetchCsrf();
   $("#register-btn").hide();
