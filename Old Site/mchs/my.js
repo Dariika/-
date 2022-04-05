@@ -211,7 +211,23 @@ $("#submit-place-btn").click(function(){
     alert("Выберите участок на карте!");
     return;
   }
-  // add here
+  let poly = {
+    "type": "Polygon",
+    "coordinates": currentPoly.getLatLngs()
+  };
+  addPlace(`name=${placeName}&`+
+           `place_type=1&`+
+           `geometry=${JSON.stringify(poly)}`,
+           function(data){
+              p.push(data);
+              L.polygon(currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
+              removePoly();
+           },
+           function(data){
+             // TODO:
+              alert("Не удалось добавить");
+              removePoly();
+           });
 });
 
 

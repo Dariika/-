@@ -60,4 +60,8 @@ function login(data, ondonecallback, onfailcallback = null){
     __post(HOST + LOGIN, data, ondonecallback, onfailcallback);
 }
 
+function addPlace(data, ondonecallback, onfailcallback = null){
+    __post(HOST + PLACES, data, ondonecallback, onfailcallback);
+}
+
 fetchCsrf();
