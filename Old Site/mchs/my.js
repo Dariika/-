@@ -100,6 +100,9 @@ function onPlaceDeleted(place) {
 
 }
 
+$("#add-btn").click(function(){
+  placeEditor.startAdd();
+});
 
 $("#edit-btn").click(function () {
   placeEditor.startEdit(polygons[polygons.length - 1]);
@@ -162,6 +165,7 @@ $("#login-submit-btn").click(function () {
     console.log(data);
   });
 });
+
 //created by dmitriy
 
 $("#overlay").hide();
