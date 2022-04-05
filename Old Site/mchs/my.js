@@ -213,7 +213,9 @@ $("#submit-place-btn").click(function(){
   }
   let poly = {
     "type": "Polygon",
-    "coordinates": currentPoly.getLatLngs()
+    "coordinates": [
+      currentPoly.getLatLngs()[0].map(value => [value.lat, value.lon])
+    ]
   };
   addPlace(`name=${placeName}&`+
            `place_type=1&`+
