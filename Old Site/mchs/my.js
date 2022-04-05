@@ -119,8 +119,7 @@ function onUserLoad(data){
   $("#register-btn").hide();
   $("#vixod").show();
   if(current_user.group == "regular_user"){
-    $("#add").hide();
-    $("#dobav").hide();
+    $("#add-pane").hide();
   }
   else{
     $("#add-pane").show();
