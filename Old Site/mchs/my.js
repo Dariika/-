@@ -4,6 +4,15 @@ center: [67.763510, 34.135140],
 zoom: 9
 }
 
+window.onload = function(){
+  if (current_user == null){
+      print_us.innerHTML="привет мир!";
+  } else{
+    print_us.innerHTML="Здравствуйте"+current_user.username;
+    document.getElementById('vixod').style.display = 'block';
+  }
+}
+
 // Creating a map object
 var map = L.map('map', mapOptions);
 
@@ -88,9 +97,6 @@ function onPlaceDeleted(place){
   
 }
 
-$("#add-btn").click(function(){
-   placeEditor.startAdd();
-});
 
 $("#edit-btn").click(function(){
   placeEditor.startEdit(polygons[polygons.length - 1]);
@@ -180,3 +186,4 @@ function showAvalanche(id){
   console.log(p[id].geometry.coordinates[0][0])
   map.setView(p[id].geometry.coordinates[0][0], 12);
 }
+
