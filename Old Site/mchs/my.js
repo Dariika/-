@@ -4,6 +4,15 @@ center: [67.763510, 34.135140],
 zoom: 9
 }
 
+// если user == null или для группы regular_user 
+// добавление участков должно быть недоступно
+// при выходе user = null
+let user = {
+  "username": "test_user",
+  "fio": "John Smith",
+  "group": "regular_user"
+}
+
 // Creating a map object
 var map = L.map('map', mapOptions);
 
