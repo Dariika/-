@@ -91,6 +91,13 @@
             <div class="in_sidebar employee sbr">
                 <img src="images/user.svg" alt="">
                 <div class="select_emp">
+                    <div id="print_us"></div>
+                    <script>
+                        window.onload = function(){
+                            if (current_user == null){
+                                print_us.innerHTML="привет мир!";
+                            }}
+                    </script>
                     <input class="select__input" type="hidden" name="">
                     <div class="select__head" id="register-btn"><button>Регистрация</button></div><br>
                 </div>
