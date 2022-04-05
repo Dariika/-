@@ -123,7 +123,9 @@ function onLogout(data){
 $("#register-submit-btn").click(function(){
   register($('#reg-form').serialize(), function(data){
       console.log(data);
-      tryFetchCurrentUser(onUserLoad);
+      login($('#reg-form')
+            .find("input[name=username], input[name=password]").serialize(),
+            () => tryFetchCurrentUser(onUserLoad));
       $("#overlay").hide();
   }, function(data){
     console.log("register failed!");
@@ -135,7 +137,6 @@ $("#login-submit-btn").click(function(){
   login($('#login-form').serialize(), function(data){
     console.log(data);
     tryFetchCurrentUser(onUserLoad);
-    current_user = data;
     $("#overlay").hide();
   }, function(data){
     console.log("login failed");
