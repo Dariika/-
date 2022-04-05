@@ -99,7 +99,7 @@
 
                 <div id="menu">
                     <ul>
-                        <li><a>Участки</a>
+                        <li><a onclick="setDefault()">Участки</a>
                             <ul id="list_avalanches"></ul>
                         </li>
                     </ul>
@@ -144,34 +144,18 @@
     </div>
 
 
-    <!-- <div class="settings">
+    <div class="settings">
+
+
+        <div class="weather">
+            <p style="display: inline; margin-left: 5px">Погода: </p>
+            <div class="weather__title"></div>
+            <div class="weather__icon"></div>
+            <div class="weather__forecast"> </div>
+        </div>
         
-        <select name="" id="">
-            <option value=""disabled selected>Город</option>
-            <option value="">Варзуга</option>
-            <option value="">Кильдинстрой</option>
-        </select>
-        <button>Обновить</button>
-        <select name="" id="">
-            <option value="" disabled selected>Высота</option>
-            <option value="">0</option>
-            <option value="">50</option>
-            <option value="">100</option>
-            <option value="">150</option>
-            <option value="">200</option>
-            <option value="">250</option>
-            <option value="">300</option>
-            <option value="">350</option>
-            <option value="">400</option>
-        </select>
-        <button>Рассчитать</button>
-    </div> -->
-
     <div class="main_content">
-
-
         <div id="map"></div>
-
     </div>
 
     <div class="footer">
