@@ -90,8 +90,8 @@
             </div>
             <div class="in_sidebar employee sbr">
                 <img src="images/user.svg" alt="">
+                <span id="current_user_fio" style="display: none;"></span>
                 <div class="select_emp">
-                    <div id="print_us"></div>
                     <input class="select__input" type="hidden" name="">
                     <div class="select__head" id="register-btn"><button>Регистрация</button></div><br>
                     <div id="vixod" class="button" style="display: none;">Выход</div>
@@ -104,12 +104,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="select__head">
-                    <div id="add" 
-                    >
+                <div class="select__head" id="add-pane" style="display: none;">
+                    <div id="add">
                     <button onclick='dobav()'>Добавить опасный участок</button>
                     <div id="dobav">
-                        <form style="list-style: none;">
+                        <form>
                             <h1>Введите данные</h1>
                             <li><input name="sm" placeholder="Название" /><br></li>
                             <li><input name="sm" type="text" placeholder="Координаты" /><br></li>

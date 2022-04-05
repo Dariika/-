@@ -4,15 +4,6 @@ center: [67.763510, 34.135140],
 zoom: 9
 }
 
-window.onload = function(){
-  if (current_user == null){
-      print_us.innerHTML="привет мир!";
-  } else{
-    print_us.innerHTML="Здравствуйте"+current_user.username;
-    document.getElementById('vixod').style.display = 'block';
-  }
-}
-
 // Creating a map object
 var map = L.map('map', mapOptions);
 
@@ -108,13 +99,27 @@ tryFetchCurrentUser(onUserLoad, onLogout);
 function onUserLoad(data){
   current_user = data;
   fetchCsrf();
-  // проверка group, скрытие кнопок
+  $("#register-btn").hide();
+  $("#vixod").show();
+  if(current_user.group == "regular_user"){
+    $("#add").hide();
+    $("#dobav").hide();
+  }
+  else{
+    $("#add-pane").show();
+  }
+  $("#current_user_fio").show();
+  $("#current_user_fio").text(`Добрый день, ${current_user.fio}`);
+
 }
 
 function onLogout(data){
     current_user = null;
     fetchCsrf();
-    // скрытие кнопок для неавторизванного пользователя
+    $("#register-btn").show();
+    $("#vixod").hide();
+    $("#add-pane").hide();
+    $("#current_user_fio").hide();
 }
 
 //  для выхода: вызвать logout(onLogout);
