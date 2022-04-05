@@ -4,15 +4,6 @@ center: [67.763510, 34.135140],
 zoom: 9
 }
 
-// если user == null или для группы regular_user 
-// добавление участков должно быть недоступно
-// при выходе user = null
-let current_user = {
-  "username": "test_user",
-  "fio": "John Smith",
-  "group": "regular_user"
-};
-
 // Creating a map object
 var map = L.map('map', mapOptions);
 
@@ -106,9 +97,27 @@ $("#edit-btn").click(function(){
 });
 
 
+tryFetchCurrentUser(onUserLoad, onLogout);
+
+function onUserLoad(data){
+  current_user = data;
+  fetchCsrf();
+  // проверка group, скрытие кнопок
+}
+
+function onLogout(data){
+    current_user = null;
+    fetchCsrf();
+    // скрытие кнопок для неавторизванного пользователя
+}
+
+//  для выхода: вызвать logout(onLogout);
+// user при этом должен быть не null
+
 $("#register-submit-btn").click(function(){
   register($('#reg-form').serialize(), function(data){
       console.log(data);
+      tryFetchCurrentUser(onUserLoad);
       $("#overlay").hide();
   }, function(data){
     console.log("register failed!");
@@ -119,6 +128,7 @@ $("#register-submit-btn").click(function(){
 $("#login-submit-btn").click(function(){
   login($('#login-form').serialize(), function(data){
     console.log(data);
+    tryFetchCurrentUser(onUserLoad);
     current_user = data;
     $("#overlay").hide();
   }, function(data){
