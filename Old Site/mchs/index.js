@@ -255,8 +255,13 @@ var abv = "in";
  if (self.ramka) ramka.style.borderBottomColor = '#e1e1e1';
  y.style.borderBottomColor = '#fff'; ramka = y;
 }
-// document.getElementById('dobav').style.display = 'none';
+
+document.getElementById('dobav').style.display = 'none';
 
 function dobav() {
     document.getElementById('dobav').style.display = 'block';
+}
+
+function ubrat() {
+    document.getElementById('dobav').style.display = 'none';
 }

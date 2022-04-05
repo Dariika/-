@@ -1,130 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/leaflet-measure.css" />
-    <link rel = "stylesheet" href = "css/leaflet.css" />
-    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="js/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Моделирование ЧС</title>
     <link rel="stylesheet" href="my.css" />
-    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 </head>
+
 <body>
 
     <div class="sidebar">
         <div class="in_sidebar choice_bar">
             <ul>
-                
-                    <li><a href="index.html"><img src="images/raindrop.svg" alt=""><p>Паводки</p></a></li>
-                    <div class="active_choice">
-                        <li><a href="#"><img src="images/sneg.svg" alt=""><p>Лавины</p></a></li>
-                    </div>
-                    <li><a href="fire_index.html"><img src="images/fire.svg" alt=""><p>Пожары</p></a></li>
-                    
+                <li><a href="index.html"><img src="images/raindrop.svg" alt="">
+                        <p>Паводки</p>
+                    </a></li>
+                <div class="active_choice">
+                    <li><a href="#"><img src="images/sneg.svg" alt="">
+                            <p>Лавины</p>
+                        </a></li>
+                </div>
+                <li><a href="fire_index.html"><img src="images/fire.svg" alt="">
+                        <p>Пожары</p>
+                    </a></li>
+
             </ul>
             <a href="https://www.mchs.gov.ru/" target="_blank">
-            <img src="images/MCHS_logo.png" class="choice_logo" alt="">
+                <img src="images/MCHS_logo.png" class="choice_logo" alt="">
             </a>
         </div>
-        <div class="sb_right">    
-            <a href="#"> <div class="in_sidebar faq_bar sbr">
-                
-                <span> F.A.Q. </span>
-                <!--
+        <div class="sb_right">
+            <a href="#">
+                <div class="in_sidebar faq_bar sbr">
+
+                    <span> F.A.Q. </span>
+                    <!--
                     Сделать как раскрывабщееся окно?
                     Информации не много, места много
                     Должно быть красиво
                  -->
-                 <div onclick="" class="hidden_faq">
-                    <hr color="white">
-                    <p>
-                    Это инструкция
-                    </p>
+                    <div onclick="" class="hidden_faq">
+                        <hr color="white">
+                        <p>
+                            Это инструкция
+                        </p>
+                    </div>
                 </div>
-                
-            </div></a>
+            </a>
             <div id="overlay">
                 <div class="korpus" id="div-form">
                     <img src="cancel.png" id="overlay_img">
                     <a onclick="vkladki('in',this);" href="javascript:void(0);" id="vkladka1">Вход</a>
                     <a onclick="vkladki('reg',this);" href="javascript:void(0);">Регистрация</a>
                     <div id="in" class="vid">
-                    <form class="forms" id="login-form">
-                        <li><input name="username" placeholder="Логин"/><br></li>
-                        <li><input name="password" type="password" placeholder="Пароль"/><br></li>
-                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="login-submit-btn" value="Вход"></input>
-                    </form>
-                  </div>
-                  <div id="reg"  class="skryt">
-                    <form class="forms" id="reg-form">
-                        <li><input name="username" placeholder="Логин"/><br></li>
-                        <li><input name="first_name" placeholder="Имя"/><br></li>
-                        <li><input name="last_name" placeholder="Фамилия"/><br></li>
-                        <li><input name="email" type="email" placeholder="E-mail"/><br></li>
-                        <li><input name="password" type="password" placeholder="Придумайте пароль"/><br></li>
-                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                        <input type="button" id="register-submit-btn" value="Регистрация"></input>
-                      </form></div>
+                        <form class="forms" id="login-form">
+                            <li><input name="username" placeholder="Логин" /><br></li>
+                            <li><input name="password" type="password" placeholder="Пароль" /><br></li>
+                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                            <input type="button" id="login-submit-btn" value="Вход"></input>
+                        </form>
+                    </div>
+                    <div id="reg" class="skryt">
+                        <form class="forms" id="reg-form">
+                            <li><input name="username" placeholder="Логин" /><br></li>
+                            <li><input name="first_name" placeholder="Имя" /><br></li>
+                            <li><input name="last_name" placeholder="Фамилия" /><br></li>
+                            <li><input name="email" type="email" placeholder="E-mail" /><br></li>
+                            <li><input name="password" type="password" placeholder="Придумайте пароль" /><br></li>
+                            <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                            <input type="button" id="register-submit-btn" value="Регистрация"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="in_sidebar employee sbr">
                 <img src="images/user.svg" alt="">
                 <div class="select_emp">
                     <input class="select__input" type="hidden" name="">
-                    <div class="select__head" id="register-btn">Регистрация</div>
-                    <div class="select__head" id="add-btn">
-                        Добавить
-                    </div>
-                    <div class="select__head" id="edit-btn">
-                        Редактировать
-                    </div>
-                    <div class="select__head">
-                        <ul id="list_avalanches"></ul>
-                    </div>
+                    <div class="select__head" id="register-btn"><button>Регистрация</button></div><br>
                 </div>
-                    <br>
-                <div align=center>
-                    <div id="add-btn" class="select__head">Добавить опасный участок</div>
-                    <button onclick='dobav()'>+</button>
+
+                <div id="menu">
+                    <ul>
+                        <li><a>Участки</a>
+                            <ul id="list_avalanches"></ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="select__head">
+                    <button onclick='dobav()'>Добавить опасный участок</button>
                     <div id="dobav">
-                        <form>
+                        <form style="list-style: none;">
                             <h1>Введите данные</h1>
-                            <li><input name="first_name" placeholder="что-то"/><br></li>
-                            <li><input name="email" type="text" placeholder="что-то"/><br></li>
-                            <input type="button" id="986515" value="Отправить"></input>
-                        </form> 
+                            <li><input name="sm" placeholder="Название" /><br></li>
+                            <li><input name="sm" type="text" placeholder="Координаты" /><br></li>
+                            <div id="add-btn">
+                                Отметить место на карте
+                            </div>
+                            <button onclick='ubrat()'>Отмена</button>
+                        </form>
                     </div>
                 </div>
-                </div></div>
-            </div></div>
             </div>
-            
         </div>
     </div>
+    </div>
+    </div>
 
-            <div class="in_sidebar anchors_bar sbr">
-                <ul>
-                    <!-- <li><a href="#anchor1">2D карта</a></li>
+    </div>
+    </div>
+
+    <div class="in_sidebar anchors_bar sbr">
+        <ul>
+            <!-- <li><a href="#anchor1">2D карта</a></li>
                     <li><a href="#anchor2">Погода</a></li>
                     <li><a href="#anchor3">3D карта</a></li> -->
-                    <!-- <li>Уровень угрозы</li>
+            <!-- <li>Уровень угрозы</li>
                     <li>Статистика</li> -->
-                </ul>
-            </div>
-            <button class="give_results">Загрузить отчёт</button>
-            <!-- <div class="give_results"></div> -->
-        </div>      
+        </ul>
+    </div>
+    <button class="give_results">Загрузить отчёт</button>
+    <!-- <div class="give_results"></div> -->
+    </div>
     </div>
 
 
@@ -152,22 +164,24 @@
     </div> -->
 
     <div class="main_content">
-        
-        <div id = "map"></div>
-    
+
+
+        <div id="map"></div>
+
     </div>
-    
+
     <div class="footer">
-        <p>Проект разработат группой студентов МАГУ 3 курса Прикладной математики и информатики</p>
+        <p>Проект разработат группой студентов МАГУ 3 курса Прикладной математики и информатики и Информатики и вычислительной техники</p>
         <a href="https://www.mchs.gov.ru/" target="_blank">
-        <img src="images/MCHS_logo.png" alt="">
+            <img src="images/MCHS_logo.png" alt="">
         </a>
     </div>
-    
+
     <script src="index.js"></script>
     <script src="js/lavina/api.js"></script>
     <script src="js/lavina/placeedit.js"></script>
     <script src="my.js"></script>
 
 </body>
+
 </html>
