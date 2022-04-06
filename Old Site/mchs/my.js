@@ -217,7 +217,11 @@ $("#submit-place-btn").click(function(){
       currentPoly.getLatLngs()[0].map(value => [value.lat, value.lng])
     ]
   };
+  // в geoJson первая точка должна повторяться в конце
+  poly.coordinates[0].push([currentPoly.getLatLngs()[0][0].lat, 
+                            currentPoly.getLatLngs()[0][0].lng]);
   addPlace(`name=${placeName}&`+
+           `owner=-1&`+
            `place_type=1&`+
            `geometry=${JSON.stringify(poly)}`,
            function(data){
