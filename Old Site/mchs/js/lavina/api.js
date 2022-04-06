@@ -63,7 +63,7 @@ function addPlace(data, ondonecallback, onfailcallback = null){
 }
 
 function getPlaces(ondonecallback, type_id = 1, onfailcallback = null) {
-    __get(HOST + PLACES+`type_id=${type_id}`, ondonecallback, onfailcallback);
+    __get(HOST + PLACES+`?type_id=${type_id}`, ondonecallback, onfailcallback);
 }
 
 fetchCsrf();
