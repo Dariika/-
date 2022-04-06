@@ -5,28 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="my.css" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/leaflet-measure.css" />
-    <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="js/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
     <title>Моделирование ЧС</title>
-    <link rel="stylesheet" href="my.css" />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 </head>
-
 <body>
-
-
-    
-        <input type="checkbox" id="nav-toggle" hidden>
+<input type="checkbox" id="nav-toggle" hidden>
         <nav class="nav">
         <div class="in_sidebar choice_bar">
             <ul>
@@ -173,12 +166,21 @@
             <div id="map"></div>
         
 
-        <div>
-            <p>Проект разработат группой студентов МАГУ 3 курса Прикладной математики и информатики и Информатики и вычислительной техники</p>
-            <a href="https://www.mchs.gov.ru/" target="_blank">
-                <img src="images/MCHS_logo.png" alt="">
-            </a>
-        </div>
+            <div class="footer">
+                <p>
+                    Проект разработан группой студентов МАГУ 3 курса направления
+                    подготовки "Прикладная математика и информатика" <br /><br />
+                    &copy; 2003
+                    <script>
+                        new Date().getFullYear() > 2003 &&
+                            document.write('-' + new Date().getFullYear());
+                    </script>
+                    Мурманский арктический государственный университет
+                </p>
+                <a href="http://www.masu.edu.ru/" target="_blank">
+                    <img src="images/MASU_logo.svg" alt="" />
+                </a>
+            </div>
         </div>
 
         <script src="index.js"></script>
