@@ -85,8 +85,8 @@ $("#submit-place-btn").click(function(){
              `geometry=${JSON.stringify(poly)}`,
              function(data){
                 p.push(data);
-                openClosePlaceAddPane();
                 L.polygon(placeEditor.currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
+                openClosePlaceAddPane();
              },
              function(data){
                // TODO:
