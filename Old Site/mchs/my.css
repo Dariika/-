@@ -281,7 +281,6 @@ input[type=button] {
 .weather {
     z-index: 5;
     position: fixed;
-    left: 365px;
     top: 0;
     width: 100%;
     font-size: 20px;
