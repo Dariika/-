@@ -304,7 +304,7 @@ button:hover{
     font-size: 20px;
     background-color: #D8D8D8;
     display: inline-block;
-    /* margin-left: 365px; */
+    margin-left: 365px; 
     padding: 5px;
     border-bottom: 1px solid #bebebe;
     
@@ -956,10 +956,6 @@ body {
 }
 
 
-main{
-    max-width: 1490px;
-    margin: 0 auto;
-}
 
 * {
     box-sizing: border-box;
