@@ -25,25 +25,26 @@
 </head>
 
 <body>
-    <!-- Боковое меню -->
+    <!-- Вертикальное меню -->
     <div class="sidebar">
+        <!-- Выбор между объектами моделирования -->
         <div class="in_sidebar choice_bar">
             <ul>
-                <li>
+                <li> <!-- Паводки -->
                     <a href="index.html">
                         <img src="images/raindrop.svg" alt="">
                         <p>Паводки</p>
                     </a>
                 </li>
-                <div class="active_choice">
-                    <li>
+                <div class="active_choice"><!-- Страница-главная относительно выбора раздела-->
+                    <li><!-- Лавины -->
                         <a href="#">
                             <img src="images/sneg.svg" alt="">
                             <p>Лавины</p>
                         </a>
                     </li>
                 </div>
-                <li>
+                <li><!-- Пожары -->
                     <a href="fire_index.html">
                         <img src="images/fire.svg" alt="">
                         <p>Пожары</p>
@@ -55,6 +56,7 @@
             </a>
         </div>
         <div class="sb_right">
+            <!-- Инструкция -->
             <a href="#">
                 <div class="in_sidebar faq_bar sbr">
 
@@ -72,10 +74,24 @@
                     </div>
                 </div>
             </a>
+            <!-- Окно авторизации -->
+            <div class="in_sidebar employee sbr">
+                <img src="images/user.svg" alt="">
+                <span id="current_user_fio" style="display: none;"></span>
+                <div class="select_emp">
+                    <input class="select__input" type="hidden" name="">
+                     <!-- Кнопка авторизации -->
+                    <div class="select__head" id="register-btn" style="display: block;"><button>Авторизация</button></div><br>
+                    <!-- Кнопка выхода, достпуна авторизованным пользователям -->
+                    <div id="vixod" class="select__head" style="display: none;"><button>Выход</button></div>
+                </div>
+            </div>
+            <!-- Форма авторизации -->
             <div id="overlay">
                 <div id="div-form">
-                    <img src="cancel.png" id="overlay_img">
+                    <img src="cancel.png" id="overlay_img"><!-- Кнопка закрытия формы -->
                     <div class="pane-content">
+                        <!-- Вкладки -->
                         <div class="vkladki-toggle" id="in-toggle">Вход</div>
                         <div class="vkladki-toggle" id="reg-toggle">Регистрация</div>
                         <div class="tab-container">
@@ -83,7 +99,6 @@
                                 <form class="forms" id="login-form">
                                     <input name="username" placeholder="Логин" /><br>
                                     <input name="password" type="password" placeholder="Пароль" /><br>
-                                    <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
                                     <input type="button" id="login-submit-btn" value="Вход"></input>
                                 </form>
                             </div>
@@ -99,28 +114,18 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
-            <div class="in_sidebar employee sbr">
-                <img src="images/user.svg" alt="">
-                <span id="current_user_fio" style="display: none;"></span>
-                <div class="select_emp">
-                    <input class="select__input" type="hidden" name="">
-                    <div class="select__head" id="register-btn" style="display: block;"><button>Авторизация</button></div><br>
-                    <div id="vixod" class="select__head" style="display: none;"><button>Выход</button></div>
-                </div>
-
+            <!-- Список участков -->
                 <div id="menu">
                     <ul>
                         <li><a onclick="setDefault()">Участки</a>
                             <ul id="list_avalanches"></ul>
                         </li>
-                       
                     </ul>
                 </div>
                 <div  id="add-pane" style="display: none;">
+            <!-- Добавить участки, доступно не всем -->
                     <div id="add">
                         <div class="dobav-toggle select__head">
                             Добавить опасный участок
@@ -136,15 +141,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <button class="give_results">Загрузить отчёт</button>
         </div>
     </div>
-    </div>
-    </div>
-
-    </div>
-    </div>
-
     <div class="in_sidebar anchors_bar sbr">
         <ul>
             <!-- <li><a href="#anchor1">2D карта</a></li>
@@ -154,7 +153,7 @@
                     <li>Статистика</li> -->
         </ul>
     </div>
-    <button class="give_results">Загрузить отчёт</button>
+    
     <!-- <div class="give_results"></div> -->
     </div>
     </div>
