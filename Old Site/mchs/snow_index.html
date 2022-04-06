@@ -18,10 +18,9 @@
     <link rel="icon" href="images/MCHS_logo.png" type="image/x-icon">
     <title>Моделирование ЧС</title>
 </head>
-
 <body>
-    <input type="checkbox" id="nav-toggle" hidden>
-    <nav class="nav">
+<input type="checkbox" id="nav-toggle" hidden>
+        <nav class="nav">
         <div class="in_sidebar choice_bar">
             <ul>
                 <li><a href="index.html"><img src="images/raindrop.svg" alt="">
@@ -35,104 +34,104 @@
                 <li><a href="fire_index.html"><img src="images/fire.svg" alt="">
                         <p>Пожары</p>
                     </a></li>
+
             </ul>
             <a href="https://www.mchs.gov.ru/" target="_blank">
                 <img src="images/MCHS_logo.png" class="choice_logo" alt="">
             </a>
         </div>
-        <label for="nav-toggle" class="nav-toggle" onclick></label>
-        <div class="sb_right">
-            <a href="#">
-                <div class="in_sidebar faq_bar sbr">
-                    <span> F.A.Q. </span>
-                    <!--
+            <label for="nav-toggle" class="nav-toggle" onclick></label>
+            <div class="sb_right">
+                <a href="#">
+                    <div class="in_sidebar faq_bar sbr">
+
+                        <span> F.A.Q. </span>
+                        <!--
                         Сделать как раскрывабщееся окно?
                         Информации не много, места много
                         Должно быть красиво
                     -->
-                    <div onclick="" class="hidden_faq">
-                        <hr color="white">
-                        <p>
-                            Это инструкция
-                        </p>
+                        <div onclick="" class="hidden_faq">
+                            <hr color="white">
+                            <p>
+                                Это инструкция
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="in_sidebar employee sbr">
+                    <img src="images/user.svg" alt="">
+                    <span id="current_user_fio" style="display: none;"></span>
+                    <div class="select_emp">
+                        <input class="select__input" type="hidden" name="">
+                        <div class="select__head" id="register-btn" style="display: block;"><button>Авторизация</button></div><br>
+                        <div id="vixod" class="select__head" style="display: none;"><button>Выход</button></div>
                     </div>
                 </div>
-            </a>
-
-            <div class="in_sidebar employee sbr">
-                <img src="images/user.svg" alt="">
-                <span id="current_user_fio" style="display: none;"></span>
-                <div class="select_emp">
-                    <input class="select__input" type="hidden" name="">
-                    <div class="select__head" id="register-btn" style="display: block;"><button>Авторизация</button>
-                    </div><br>
-                    <div id="vixod" class="select__head" style="display: none;"><button>Выход</button></div>
-                </div>
-            </div>
-
-            <div id="overlay">
-                <div id="div-form">
-                    <img src="cancel.png" id="overlay_img">
-                    <div class="pane-content">
-                        <div class="vkladki-toggle" id="in-toggle">Вход</div>
-                        <div class="vkladki-toggle" id="reg-toggle">Регистрация</div>
-                        <div class="tab-container">
-                            <div id="in">
-                                <form class="forms" id="login-form">
-                                    <input name="username" placeholder="Логин" /><br>
-                                    <input name="password" type="password" placeholder="Пароль" /><br>
-                                    <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
-                                    <input type="button" id="login-submit-btn" value="Вход"></input>
-                                </form>
+                
+                <div id="overlay">
+                    <div id="div-form">
+                        <img src="cancel.png" id="overlay_img">
+                        <div class="pane-content">
+                            <div class="vkladki-toggle" id="in-toggle">Вход</div>
+                            <div class="vkladki-toggle" id="reg-toggle">Регистрация</div>
+                            <div class="tab-container">
+                                <div id="in">
+                                    <form class="forms" id="login-form">
+                                        <input name="username" placeholder="Логин" /><br>
+                                        <input name="password" type="password" placeholder="Пароль" /><br>
+                                        <!-- <input name="password_confirm" type="password" placeholder="Повторите пароль"/><br> -->
+                                        <input type="button" id="login-submit-btn" value="Вход"></input>
+                                    </form>
+                                </div>
+                                <div id="reg" style="display: none;">
+                                    <form class="forms" id="reg-form">
+                                        <input name="username" placeholder="Логин" /><br>
+                                        <input name="first_name" placeholder="Имя" /><br>
+                                        <input name="last_name" placeholder="Фамилия" /><br>
+                                        <input name="email" type="email" placeholder="E-mail" /><br>
+                                        <input name="password" type="password" placeholder="Придумайте пароль" /><br>
+                                        <input type="button" id="register-submit-btn" value="Регистрация"></input>
+                                    </form>
+                                </div>
                             </div>
-                            <div id="reg" style="display: none;">
-                                <form class="forms" id="reg-form">
-                                    <input name="username" placeholder="Логин" /><br>
-                                    <input name="first_name" placeholder="Имя" /><br>
-                                    <input name="last_name" placeholder="Фамилия" /><br>
-                                    <input name="email" type="email" placeholder="E-mail" /><br>
-                                    <input name="password" type="password" placeholder="Придумайте пароль" /><br>
-                                    <input type="button" id="register-submit-btn" value="Регистрация"></input>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+                    <div id="menu">
+                        <ul>
+                            <li><a onclick="setDefault()">Участки</a>
+                                <ul id="list_avalanches"></ul>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div  id="add-pane" style="display: none;">
+                        <div id="add">
+                            <div class="dobav-toggle select__head">
+                                Добавить опасный участок
+                            </div>
+                            <div id="dobav" style="display: none;">
+                                <form id="place-add-form" class="forms">
+                                    <input name="place-name" placeholder="Название участка" /><br>
+                                    <span id="place-selected" style="display: none;">Участок выбран ✓</span><br>
+                                    <input type="button" id="add-place-btn" value="Отметить место на карте"></input><br>
+                                    <input type="button" id="submit-place-btn" value="Сохранить"></input><br>
+                                    <input type="button" class="dobav-toggle" value="Отмена"></input>
                                 </form>
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-            </div>
-
-            <div id="menu">
-                <ul>
-                    <li><a onclick="setDefault()">Участки</a>
-                        <ul id="list_avalanches"></ul>
-                    </li>
-
-                </ul>
-            </div>
-            <div id="add-pane" style="display: none;">
-                <div id="add">
-                    <div class="dobav-toggle select__head">
-                        Добавить опасный участок
-                    </div>
-                    <div id="reg" style="display: none;">
-                        <form class="forms" id="reg-form">
-                            <input name="username" placeholder="Логин" /><br>
-                            <input name="first_name" placeholder="Имя" /><br>
-                            <input name="last_name" placeholder="Фамилия" /><br>
-                            <input name="email" type="email" placeholder="E-mail" /><br>
-                            <input name="password" type="password" placeholder="Придумайте пароль" /><br>
-                            <input type="button" id="register-submit-btn" value="Регистрация"></input>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+                
         </div>
     </nav>
-
+    
     <main role="main">
-
+        
 
         <div id="content">
             <div class="weather">
@@ -145,21 +144,21 @@
 
         <div id="map"></div>
 
-        <div class="footer">
-            <p>
-                Проект разработан группой студентов МАГУ 3 курса направления
-                подготовки "Прикладная математика и информатика" <br /><br />
-                &copy; 2003
-                <script>
-                    new Date().getFullYear() > 2003 &&
-                        document.write('-' + new Date().getFullYear());
-                </script>
-                Мурманский арктический государственный университет
-            </p>
-            <a href="http://www.masu.edu.ru/" target="_blank">
-                <img src="images/MASU_logo.svg" alt="" />
-            </a>
-        </div>
+    <div class="footer">
+        <p>
+            Проект разработан группой студентов МАГУ 3 курса направления
+            подготовки "Прикладная математика и информатика" <br /><br />
+            &copy; 2003
+            <script>
+                new Date().getFullYear() > 2003 &&
+                document.write('-' + new Date().getFullYear());
+            </script>
+            Мурманский арктический государственный университет
+        </p>
+        <a href="http://www.masu.edu.ru/" target="_blank">
+        <img src="images/MASU_logo.svg" alt="" />
+        </a>
+    </div>
 
     <script src="index.js"></script>
     <script src="js/lavina/api.js"></script>
@@ -169,5 +168,4 @@
     <script src="js/lavina/placeedit.js"></script>
     </main>
 </body>
-
 </html>
