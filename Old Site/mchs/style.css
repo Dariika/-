@@ -710,7 +710,7 @@ a:hover{
  * фишка необязательная, на любителя
 */
  
-[id='nav-toggle']:checked ~ main > #content {
+[id='nav-toggle']:checked ~ main > .main_content {
     -webkit-transform: translateX(365px);
     -moz-transform: translateX(365px);
     transform: translateX(365px);
@@ -956,7 +956,3 @@ body {
 }
 
 
-
-* {
-    box-sizing: border-box;
-  }
