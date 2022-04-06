@@ -1,4 +1,8 @@
-let p = getPlaces();
+let p = [];
+
+getPlaces(function(data){
+    console.log(data);
+});
 
 for (let a in p) {
   L.polygon(p[a].geometry.coordinates, { color: 'orange' }).addTo(map);
