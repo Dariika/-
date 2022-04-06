@@ -5,14 +5,18 @@ function fetchPlaces(){
         p = data;
         $.each(p, function (i, place) {
             L.polygon(place.geometry.coordinates, { color: 'orange' }).addTo(map);
-            var li = $('<li/>').appendTo('#list_avalanches');
-            $('<a />')
-                .text(place.name)
-                .attr('href', '#')
-                .on('click', function () { showAvalanche(i) })
-            .appendTo(li);
+            updatePlacesList(place, i);
         });
     });
+}
+
+function updatePlacesList(place, index){
+    var li = $('<li/>').appendTo('#list_avalanches');
+    $('<a />')
+        .text(place.name)
+        .attr('href', '#')
+        .on('click', function () { showAvalanche(index) })
+    .appendTo(li);
 }
 
 fetchPlaces();
@@ -89,6 +93,7 @@ $("#submit-place-btn").click(function(){
                 p.push(data);
                 L.polygon(placeEditor.currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
                 openClosePlaceAddPane();
+                updatePlacesList(p[p.length-1], p.length-1);
              },
              function(data){
                // TODO:
