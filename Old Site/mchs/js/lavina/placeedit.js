@@ -10,6 +10,12 @@ function fetchPlaces(){
     });
 }
 
+
+document.querySelector("select").addEventListener('change', function (e) {
+  console.log("Changed to: " + e.target.value)
+  showAvalanche(e.target.value)
+})
+
 function updatePlacesList(place, index){
     var li = $('<li/>').appendTo('#list_avalanches');
     $('<option />')
