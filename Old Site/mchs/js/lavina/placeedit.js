@@ -86,7 +86,7 @@ $("#submit-place-btn").click(function(){
              function(data){
                 p.push(data);
                 openClosePlaceAddPane();
-                L.polygon(this.currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
+                L.polygon(placeEditor.currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
              },
              function(data){
                // TODO:
