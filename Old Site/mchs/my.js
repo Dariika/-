@@ -88,8 +88,10 @@ let placeEditor = new PlaceEditor(map,
   onPlaceDeleted);
 
 function onPlaceAdded(polygon) {
+  currentPoly = polygon;
+  $("#place-selected").show();
+  $("#add-place-btn").val("Отметить заново");
   polygon.addTo(map);
-  polygons.push(polygon);
 }
 
 function onPlaceUpdated(place) {
@@ -100,6 +102,18 @@ function onPlaceDeleted(place) {
 
 }
 
+function removePoly(){
+  if(currentPoly != null) {
+    map.removeLayer(currentPoly);
+    currentPoly = null;
+  }
+}
+
+$("#add-place-btn").click(function(){
+  removePoly();
+  $("#place-selected").hide();
+  placeEditor.startAdd();
+});
 
 $("#edit-btn").click(function () {
   placeEditor.startEdit(polygons[polygons.length - 1]);
@@ -162,6 +176,67 @@ $("#login-submit-btn").click(function () {
     console.log(data);
   });
 });
+
+let currentPoly = null;
+
+$(".dobav-toggle").click(function(){
+  $("#dobav").toggle();
+  removePoly();
+  $("#place-selected").hide();
+  $("#add-place-btn").val("Отметить место на карте");
+});
+
+
+
+$("#reg-toggle").toggleClass('tab-inactive');
+$("#in-toggle").toggleClass('tab-active');
+
+$(".vkladki-toggle").click(function(){
+  $("#in").toggle();
+  $("#reg").toggle();
+  $("#reg-toggle").toggleClass('tab-inactive');
+  $("#reg-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-inactive');
+});
+
+$("#submit-place-btn").click(function(){
+  // TODO: 
+  let placeName = $("input[name=place-name]").val().trim();
+  if(placeName == ""){
+    alert("Введите название участка!");
+    return;
+  }
+  if(currentPoly == null){
+    alert("Выберите участок на карте!");
+    return;
+  }
+  let poly = {
+    "type": "Polygon",
+    "coordinates": [
+      currentPoly.getLatLngs()[0].map(value => [value.lat, value.lng])
+    ]
+  };
+  // в geoJson первая точка должна повторяться в конце
+  poly.coordinates[0].push([currentPoly.getLatLngs()[0][0].lat, 
+                            currentPoly.getLatLngs()[0][0].lng]);
+  addPlace(`name=${placeName}&`+
+           `place_type=1&`+
+           `geometry=${JSON.stringify(poly)}`,
+           function(data){
+              p.push(data);
+              L.polygon(currentPoly.getLatLngs(), {color: "yellow"}).addTo(map);
+              removePoly();
+           },
+           function(data){
+             // TODO:
+              alert("Не удалось добавить");
+              removePoly();
+           });
+});
+
+
+
 //created by dmitriy
 
 $("#overlay").hide();

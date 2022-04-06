@@ -4,6 +4,7 @@ CSRF = "/crsf"
 LOGIN = "/login"
 LOGOUT = "/logout"
 WHOAMI = "/whoami"
+PLACES = "/places"
 
 let current_user = null;
 
@@ -57,6 +58,10 @@ function register(data, ondonecallback, onfailcallback = null){
 
 function login(data, ondonecallback, onfailcallback = null){
     __post(HOST + LOGIN, data, ondonecallback, onfailcallback);
+}
+
+function addPlace(data, ondonecallback, onfailcallback = null){
+    __post(HOST + PLACES, data, ondonecallback, onfailcallback);
 }
 
 fetchCsrf();
