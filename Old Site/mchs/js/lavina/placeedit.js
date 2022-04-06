@@ -13,8 +13,8 @@ function fetchPlaces(){
 function updatePlacesList(place, index){
     var li = $('<li/>').appendTo('#list_avalanches');
     $('<option />')
-        .innerText(place.name)
-        .value(index)
+        .text(place.name)
+        .attrs({'value': index})
         .on('change', function () { showAvalanche(index) })
     .appendTo("select");
 }
