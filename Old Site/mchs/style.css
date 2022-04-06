@@ -727,21 +727,6 @@ a:hover{
 }
  
 /**
- * профиксим баг в Android <= 4.1.2
- * см: http://timpietrusky.com/advanced-checkbox-hack
- */
- 
-body {
-    -webkit-animation: bugfix infinite 1s;
-}
- 
-@-webkit-keyframes bugfix {
-    to {
-      padding: 0;
-    }
-}
- 
-/**
  * позаботьтимся о средних и маленьких экранах
  * мобильных устройств
  */
