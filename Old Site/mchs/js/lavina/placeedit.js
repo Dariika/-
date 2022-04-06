@@ -1,12 +1,15 @@
 let p = [];
 
-getPlaces(function(data){
-    console.log(data);
-});
-
-for (let a in p) {
-  L.polygon(p[a].geometry.coordinates, { color: 'orange' }).addTo(map);
+function fetchPlaces(){
+    getPlaces(function(data){
+        p = data;
+        for (let a in p) {
+            L.polygon(p[a].geometry.coordinates, { color: 'orange' }).addTo(map);
+          }
+    });
 }
+
+fetchPlaces();
 
 $.each(p, function (i, item) {
 
