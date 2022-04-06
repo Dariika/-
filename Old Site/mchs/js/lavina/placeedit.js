@@ -12,11 +12,11 @@ function fetchPlaces(){
 
 function updatePlacesList(place, index){
     var li = $('<li/>').appendTo('#list_avalanches');
-    $('<a />')
+    $('<option />')
         .text(place.name)
-        .attr('href', '#')
-        .on('click', function () { showAvalanche(index) })
-    .appendTo(li);
+        .value(index)
+        .on('change', function () { showAvalanche(index) })
+    .appendTo("select");
 }
 
 fetchPlaces();

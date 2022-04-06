@@ -290,7 +290,7 @@ input[type=button] {
 
 .main_content {
     margin-left: 0 !important;
-    margin-top: 55px;
+    margin-top: 5px !important;
     padding-left: 15px;
     padding-bottom: 15px;
     height: auto;
