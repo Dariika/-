@@ -3,25 +3,20 @@ let p = [];
 function fetchPlaces(){
     getPlaces(function(data){
         p = data;
-        for (let a in p) {
-            L.polygon(p[a].geometry.coordinates, { color: 'orange' }).addTo(map);
-          }
+        $.each(p, function (i, place) {
+            L.polygon(place.geometry.coordinates, { color: 'orange' }).addTo(map);
+            var li = $('<li/>').appendTo('#list_avalanches');
+            $('<a />')
+                .text(place.name)
+                .attr('href', '#')
+                .on('click', function () { showAvalanche(i) })
+            .appendTo(li);
+        });
     });
 }
 
 fetchPlaces();
 
-$.each(p, function (i, item) {
-
-    var li = $('<li/>')
-      .appendTo('#list_avalanches');
-    $('<a />')
-      .text(item.name)
-      .attr('href', '#')
-      .on('click', function () { showAvalanche(i) })
-      .appendTo(li);
-  })
-  
 function showAvalanche(id) {
     map.setView(p[id].geometry.coordinates[0][0], 12);
     lat = p[id].geometry.coordinates[0][0][0];
