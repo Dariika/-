@@ -17,7 +17,6 @@ document.querySelector("select").addEventListener('change', function (e) {
 })
 
 function updatePlacesList(place, index){
-    var li = $('<li/>').appendTo('#list_avalanches');
     $('<option />')
         .text(place.name)
         .attr({'value': index})
@@ -34,7 +33,6 @@ function showAvalanche(id) {
     appkey = '5d20f14e98068a911f39ac24389c3aa5';
     title = p[id].name;
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appkey}`).then(function (resp) { return resp.json() }).then(function (data) {
-        document.querySelector('.weather__title').textContent = title;
         document.querySelector('.weather__forecast').innerHTML = Math.round(data.main.temp - 273) + '&deg;C';
         document.querySelector('.weather__icon').innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" width=50 height=50>`;
     })
