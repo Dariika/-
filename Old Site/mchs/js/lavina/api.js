@@ -6,8 +6,6 @@ LOGOUT = "/logout"
 WHOAMI = "/whoami"
 PLACES = "/places"
 
-let current_user = null;
-
 function __post(url, data, ondonecallback, onfailcallback = null){
     $.post({
         'url': url,
@@ -62,6 +60,61 @@ function login(data, ondonecallback, onfailcallback = null){
 
 function addPlace(data, ondonecallback, onfailcallback = null){
     __post(HOST + PLACES, data, ondonecallback, onfailcallback);
+}
+
+function getPlaces() {
+    return [
+  
+      {
+        "name": "участок 1",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [67.594737, 33.733145],
+              [67.601152, 33.728142],
+              [67.606744, 33.737543],
+              [67.607994, 33.769972],
+              [67.596612, 33.766953],
+              [67.589208, 33.745564],
+              [67.590393, 33.736853]
+            ]
+          ]
+        }
+      },
+  
+      {
+        "name": "участок 2",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [67.750001, 33.666828],
+              [67.749958, 33.666913],
+              [67.749968, 33.666777],
+              [67.750001, 33.666828],
+            ]
+          ]
+        }
+      },
+  
+      {
+        "name": "участок 3",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [67.834847, 33.801198],
+              [67.837821, 33.814425],
+              [67.824867, 33.844060],
+              [67.821973, 33.817643],
+              [67.821973, 33.817643],
+            ]
+          ]
+        }
+      }
+  
+    ]
 }
 
 fetchCsrf();
