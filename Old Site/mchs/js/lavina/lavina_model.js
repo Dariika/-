@@ -44,19 +44,24 @@ function choosePath(response){
                 continue;
             }
             if(i != 1 && 
-               j != 1 && 
-               data[i][j]["elevation"] == currentElevation){
-                lowestPoints.push(data[i][j]);
+               j != 1){
+                   
+               if(data[i][j]["elevation"] == currentElevation){
+                    lowestPoints.push(data[i][j]);
+               }
+
+               if(Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]) < heightDelta){
+                    heightDelta = Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]);
+                    closestPoint = data[i][j];
+                }
+
             }
             if(data[i][j]["elevation"] < currentElevation){
                 lowestPoints = [];
                 currentElevation = data[i][j]["elevation"];
                 lowestPoints.push(data[i][j]);
             }
-            if(Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]) < heightDelta){
-                heightDelta = Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]);
-                closestPoint = data[i][j];
-            }
+           
         }
     }
 
