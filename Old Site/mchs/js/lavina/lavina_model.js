@@ -79,6 +79,7 @@ function choosePath(response){
         polyline.addTo(map);
     }
     else{
+        $("#trace-status").text(`${tracedPath.length} / 500 загружено`);
        // рекурсия
         getElevation(nextPoint["coords"], choosePath, function(error){
             console.log(error);
@@ -96,12 +97,13 @@ function getDelta(index){
 
 
 $("#add-downhill-marker").click(function(){
-    currentMarker.addTo(map)
+    clearMap();
+    currentMarker.addTo(map);
     map.on('mousemove', onMove);
     map.on('click', onClick);
 });
 
-$("#clear-downhill-marker").click(function(){
+function clearMap(){
     tracedPath = [];
     if(map.hasLayer(currentMarker)){
         map.removeLayer(currentMarker);
@@ -111,4 +113,8 @@ $("#clear-downhill-marker").click(function(){
         map.removeLayer(polyline);
         polyline = null;
     }
+}
+
+$("#clear-downhill-marker").click(function(){
+   clearMap();
 });
