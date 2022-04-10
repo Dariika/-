@@ -17,7 +17,7 @@ function onClick(e){
 function choosePath(response){
     let data = response["data"];
     if(tracedPath.length == 0){
-        tracedPath.append(data[1][1]);
+        tracedPath.push(data[1][1]);
     }
     else{
         // координаты точки, переданной в api 
@@ -46,12 +46,12 @@ function choosePath(response){
             if(i != 1 && 
                j != 1 && 
                data[i][j]["elevation"] == currentElevation){
-                lowestPoints.append(data[i][j]);
+                lowestPoints.push(data[i][j]);
             }
             if(data[i][j]["elevation"] < currentElevation){
                 lowestPoints = [];
                 currentElevation = data[i][j]["elevation"];
-                lowestPoints.append(data[i][j]);
+                lowestPoints.push(data[i][j]);
             }
             if(Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]) < heightDelta){
                 heightDelta = Math.abs(data[i][j]["elevation"] - data[1][1]["elevation"]);
@@ -69,7 +69,7 @@ function choosePath(response){
         nextPoint = lowestPoints[Math.floor(Math.random() * lowestPoints.length)];
     } 
 
-    tracedPath.append(nextPoint);
+    tracedPath.push(nextPoint);
 
     // let delta = getDelta(tracedPath.length - 2);
 
