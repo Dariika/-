@@ -1,6 +1,7 @@
 let currentMarker = L.marker([0, 0])
 let polyline = null;
 let tracedPath = [];
+let sameElevationCount = 0;
 
 function onMove(e){
     currentMarker.setLatLng(e.latlng);
@@ -45,7 +46,7 @@ function choosePath(response){
             }
             if(i != 1 && 
                j != 1){
-                   
+
                if(data[i][j]["elevation"] == currentElevation){
                     lowestPoints.push(data[i][j]);
                }
@@ -76,20 +77,24 @@ function choosePath(response){
 
     tracedPath.push(nextPoint);
 
-    // let delta = getDelta(tracedPath.length - 2);
-
-    // TODO: условие останова
-    if(tracedPath.length > 500){
-        polyline = L.polyline(tracedPath.map((point) => point.coords), {color: 'blue'});
-        polyline.addTo(map);
+    let delta = getDelta(tracedPath.length - 2);
+    if(delta.elevationD <= 1){
+        sameElevationCount++;
     }
     else{
-        $("#trace-status").text(`${tracedPath.length} / 500 загружено`);
-       // рекурсия
-        getElevation(nextPoint["coords"], choosePath, function(error){
-            console.log(error);
-        }); 
+        sameElevationCount = 0;
     }
+    if(sameElevationCount > 10){
+        polyline = L.polyline(tracedPath.map((point) => point.coords), {color: 'blue'});
+        polyline.addTo(map);
+        return;
+    }
+
+    $("#trace-status").text(`${tracedPath.length} точек загружено`);
+    // рекурсия
+    getElevation(nextPoint["coords"], choosePath, function(error){
+        console.log(error);
+    }); 
 }
 
 function getDelta(index){
