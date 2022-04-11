@@ -8,7 +8,7 @@ function setDefault() {
     .catch(function () {
       //Обрабатываем ошибки
     });
-  map.setView([67.763510, 34.135140], 9);
+  map.setView([67.763510, 34.135140], 5);
 }
 
 // Creating map options
