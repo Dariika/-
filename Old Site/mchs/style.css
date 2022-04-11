@@ -110,6 +110,12 @@ a{
 .employee{
     height: 185px;
 }
+.employee_1{
+    height: 100px;
+}
+.employee_2{
+    height: 290px;
+}
 .employee img{
     position: inherit;
     margin-top: 15px;
