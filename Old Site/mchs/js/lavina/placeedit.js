@@ -1,8 +1,10 @@
 let p = [];
+let currentPlace = null;
 
 function fetchPlaces(){
     getPlaces(function(data){
         p = data;
+        currentPlace = p[0];
         $.each(p, function (i, place) {
             L.polygon(place.geometry.coordinates, { color: 'orange' }).addTo(map);
             updatePlacesList(place, i);
@@ -17,8 +19,9 @@ function fetchPlaces(){
 
 
 document.querySelector("select").addEventListener('change', function (e) {
-  console.log("Changed to: " + e.target.value)
-  showAvalanche(e.target.value)
+  console.log("Changed to: " + e.target.value);
+  showAvalanche(e.target.value);
+  currentPlace = p[e.target.value];
 })
 
 function updatePlacesList(place, index){

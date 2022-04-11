@@ -102,6 +102,13 @@ $("#add-downhill-marker").click(function(){
     map.on('click', onClick);
 });
 
+$("#calculate-current").click(function(){
+    getElevation(currentPlace.heighest_point.coordinates, choosePath, function(error){
+        console.log(error);
+    }); 
+});
+
+
 function clearMap(){
     tracedPath = [];
     if(map.hasLayer(currentMarker)){
