@@ -635,9 +635,9 @@ a:hover{
     /* абсолютно позиционируем */
     position: absolute;
     /* относительно левого края панели */
-    left: 365px;
+    left: 350px;
     /* отступ от верхнего края панели */
-    top: 10em;
+    top: 0em;
     /* внутренние отступы */
     padding: 0.5em;
     /* определяем цвет фона переключателя
@@ -649,7 +649,7 @@ a:hover{
     /* вид курсора */
     cursor: pointer;
     /* размер шрифта */
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1;
     /* всегда поверх других элементов страницы */
     z-index: 2010;
@@ -694,7 +694,7 @@ a:hover{
 [id='nav-toggle']:checked ~ .nav > .nav-toggle {
     left: auto;
     right: 2px;
-    top: 1em;
+    top: 0em;
 }
  
 /**
