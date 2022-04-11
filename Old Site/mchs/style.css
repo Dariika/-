@@ -110,9 +110,13 @@ a{
 .employee{
     height: 185px;
 }
+
 .employee_1{
-    height: 110px;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
+
 .employee_2{
     height: 290px;
 }
