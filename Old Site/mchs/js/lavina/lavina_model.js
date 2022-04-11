@@ -20,17 +20,6 @@ function choosePath(response){
     if(tracedPath.length == 0){
         tracedPath.push(data[1][1]);
     }
-    else{
-        // координаты точки, переданной в api 
-        // и ее же координаты, вычисленные через api,
-        // могут не совсем совпадать 
-        // TODO: убрать когда будет 100% уверенность, что вычисление координат
-        // работает всегда правильно
-        let error = response["error"];
-        if(error[0] > 0.0001 || error[1] > 0.0001){
-            console.log("Notice: coords is slightly different");
-        }
-    }
     // находим самые нижние точки
     // на всякий случай, если все точки выше данной,
     // находим самую близкую точку к данной по высоте 
@@ -85,7 +74,7 @@ function choosePath(response){
         sameElevationCount = 0;
     }
     if(sameElevationCount > 10){
-        polyline = L.polyline(tracedPath.map((point) => point.coords), {color: 'blue'});
+        polyline = L.polyline(tracedPath.map((point) => point.coords), {color: 'red'});
         polyline.addTo(map);
         return;
     }

@@ -6,6 +6,11 @@ function fetchPlaces(){
         $.each(p, function (i, place) {
             L.polygon(place.geometry.coordinates, { color: 'orange' }).addTo(map);
             updatePlacesList(place, i);
+            if(place.heighest_point != null){
+              L.marker(place.heighest_point.coordinates).addTo(map)
+                  .bindPopup(`Высота: ${place.heighest_elevation}`)
+                  .openPopup();
+            }
         });
     });
 }
