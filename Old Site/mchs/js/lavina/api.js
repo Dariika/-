@@ -5,6 +5,7 @@ LOGIN = "/login"
 LOGOUT = "/logout"
 WHOAMI = "/whoami"
 PLACES = "/places"
+ELEVATION = "/elevation_around"
 
 function __post(url, data, ondonecallback, onfailcallback = null){
     $.post({
@@ -64,6 +65,10 @@ function addPlace(data, ondonecallback, onfailcallback = null){
 
 function getPlaces(ondonecallback, type_id = 1, onfailcallback = null) {
     __get(HOST + PLACES+`?type_id=${type_id}`, ondonecallback, onfailcallback);
+}
+
+function getElevation(latlng, ondonecallback, onfailcallback = null){
+    __get(HOST + ELEVATION + `/${latlng[0]}/${latlng[1]}`, ondonecallback, onfailcallback)
 }
 
 fetchCsrf();

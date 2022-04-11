@@ -40,11 +40,12 @@ a{
     position: absolute;
     width: 80px;
     height: calc(100% - 20px);
-    margin: 10px 0 10px 10px;
+    margin: 10px 0 10px 270px;
     border-radius: 2px;
     text-align: center;
     color: white;
     font-size: 14px;
+    z-index: 2009;
 }
 .choice_bar img{
     width: 30px;
@@ -74,7 +75,6 @@ a{
 .sb_right{
     position: relative;
     display: block;
-    float: right;
 }
 .sbr{
     margin: 10px 10px 10px 10px;
@@ -304,7 +304,7 @@ button:hover{
     font-size: 20px;
     background-color: #D8D8D8;
     display: inline-block;
-    /* margin-left: 365px; */
+    margin-left: 365px; 
     padding: 5px;
     border-bottom: 1px solid #bebebe;
     
@@ -607,7 +607,7 @@ a:hover{
     bottom: 0;
     margin: 0;
     /* сдвигаем (прячем) панель относительно левого края страницы */
-    left: -365px;
+    left: -265px;
     /* внутренние отступы */
     padding: 0px 0px;
     /* плавный переход смещения панели */
@@ -646,7 +646,7 @@ a:hover{
     font-size: 1.2em;
     line-height: 1;
     /* всегда поверх других элементов страницы */
-    z-index: 2001;
+    z-index: 2010;
     /* анимируем цвет текста при наведении */
     -webkit-transition: color .25s ease-in-out;
     -moz-transition: color .25s ease-in-out;
@@ -710,7 +710,7 @@ a:hover{
  * фишка необязательная, на любителя
 */
  
-[id='nav-toggle']:checked ~ main > #content {
+[id='nav-toggle']:checked ~ main > .main_content {
     -webkit-transform: translateX(365px);
     -moz-transform: translateX(365px);
     transform: translateX(365px);
@@ -941,11 +941,3 @@ a:hover{
 }
 
 
-main{
-    max-width: 1490px;
-    margin: 0 auto;
-}
-
-* {
-    box-sizing: border-box;
-  }
