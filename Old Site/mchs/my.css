@@ -244,8 +244,7 @@ input[type=button] {
     border: 1px solid #6C95C3;
     padding: 10px 0px;
     margin-top: 5px;
-    margin-left: auto;
-    margin-bottom: 8px;
+    margin-left: auto;  
     font-size: 14px;
     line-height: 18px;
     color: rgba(255, 255, 255, 0.8);
@@ -266,6 +265,7 @@ input[type=button] {
     height: 100vh;
     z-index: 4;
     margin-right: 15px;
+    margin-left: 100px;
 }
 
 
@@ -283,9 +283,8 @@ input[type=button] {
     top: 0;
     width: 100%;
     font-size: 20px;
-    background-color: #D8D8D8;
-    margin-bottom: 15px;
     height: 50px;
+    margin-left: 106px;
 }
 
 .main_content {

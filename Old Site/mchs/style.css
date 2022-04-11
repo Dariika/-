@@ -631,7 +631,7 @@ a:hover{
     /* относительно левого края панели */
     left: 365px;
     /* отступ от верхнего края панели */
-    top: 1em;
+    top: 10em;
     /* внутренние отступы */
     padding: 0.5em;
     /* определяем цвет фона переключателя
@@ -711,9 +711,9 @@ a:hover{
 */
  
 [id='nav-toggle']:checked ~ main > .main_content {
-    -webkit-transform: translateX(365px);
-    -moz-transform: translateX(365px);
-    transform: translateX(365px);
+    -webkit-transform: translateX(256px);
+    -moz-transform: translateX(256px);
+    transform: translateX(256px);
 }
  
 /*
