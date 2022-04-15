@@ -14,7 +14,6 @@ function fetchPlaces(){
     getPlaces(function(data){
         p = data;
         currentPlace = p[0];
-        showAvalanche(currentPlace);
         $.each(p, function (i, place) {
             place.poly = L.polygon(place.geometry.coordinates, { color: 'orange' });
             place.poly.addTo(map);
@@ -25,6 +24,7 @@ function fetchPlaces(){
                   .openPopup();
             }
         });
+        showAvalanche(currentPlace);
     });
 }
 
