@@ -17,11 +17,11 @@ function fetchPlaces(){
         $.each(p, function (i, place) {
             place.poly = L.polygon(place.geometry.coordinates, { color: 'orange' });
             place.poly.addTo(map);
+            place.poly.bindTooltip(place.name, {'permanent': true});
             updatePlacesList(place, i);
             if(place.heighest_point != null){
               L.marker(place.heighest_point.coordinates).addTo(map)
-                  .bindPopup(`Высота: ${place.heighest_elevation}`)
-                  .openPopup();
+                  .bindTooltip(`Высота: ${place.heighest_elevation}`, {'permanent': true});
             }
         });
         showAvalanche(currentPlace);
