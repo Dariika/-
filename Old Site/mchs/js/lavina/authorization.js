@@ -43,13 +43,30 @@ function onLogout(data){
     $("#current_user_fio").hide();
 }
 
+function clearForms(){
+    $(".error-message").hide();
+    $("#reg-form, #login-form").each(function(index){
+        $(this)[0].reset();
+    });
+}
+
+//created by dmitriy
+$("#register-btn").click(function () {
+    $("#overlay").toggle();
+});
+  
+$("#overlay_img").click(function () {
+    $("#overlay").toggle();
+    clearForms();
+});
+  
 $("#register-submit-btn").click(function(){
     register($('#reg-form').serialize(), function(data){
         console.log(data);
-        $("#reg-form .error-message").hide();
         login($('#reg-form')
                 .find("input[name=username], input[name=password]").serialize(),
                 () => tryFetchCurrentUser(onUserLoad));
+        clearForms();
         $("#overlay").hide();
     }, function(data){
         console.log("register failed!");
@@ -67,6 +84,7 @@ $("#login-submit-btn").click(function () {
         console.log(data);
         $("#login-error").hide();
         tryFetchCurrentUser(onUserLoad);
+        clearForms();
         $("#overlay").hide();
     }, function(data){
         if(data.responseJSON != undefined){

@@ -37,16 +37,4 @@ $(".vkladki-toggle").click(function(){
   $("#in-toggle").toggleClass('tab-inactive');
 });
 
-//created by dmitriy
-
-$("#overlay").hide();
-
-$("#register-btn").click(function () {
-  $("#overlay").toggle();
-});
-
-$("#overlay_img").click(function () {
-  $("#overlay").toggle();
-});
-
 
