@@ -12,7 +12,7 @@ getClippingArea(function(area){
   showWeatherAndZoom(clippingArea);
 });
 
-function addPlace(i, place, polyCoords){
+function showPlace(i, place, polyCoords){
   place.poly = L.polygon(polyCoords, INACTIVE_POLYGON_STYLE);
   place.poly.place_obj = place;
   place.poly.addTo(map);
@@ -30,7 +30,7 @@ function fetchPlaces(){
         p = data;
         currentPlace = p[0];
         $.each(p, function (i, place) {
-           addPlace(i, place, place.geometry.coordinates);
+           showPlace(i, place, place.geometry.coordinates);
         });
         showAvalanche(currentPlace);
     });
@@ -166,7 +166,7 @@ $("#submit-place-btn").click(function(){
                   installPolyHandlers(value.poly);
                 });
                 p.push(data);
-                addPlace(p.length-1, data, placeEditor.currentPoly.getLatLngs());
+                showPlace(p.length-1, data, placeEditor.currentPoly.getLatLngs());
                 showAvalanche(data);
                 openClosePlaceAddPane();
              },
