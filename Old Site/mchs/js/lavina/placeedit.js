@@ -99,7 +99,7 @@ function showWeatherAndZoom(poly){
 function showAvalanche(place) {
     setCurrentPlace(place);
     showWeatherAndZoom(place.poly);
-    $("#place-select").prop("value", p.indexOf(place.place_obj));
+    $("#place-select").prop("value", p.indexOf(place));
 }
 
 fetchPlaces();
