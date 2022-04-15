@@ -71,7 +71,7 @@ function fetchWeather(latlng){
       });
 }
 
-$("#place-select").click(function(){
+$("#place-select").on("change", function(){
   console.log("Changed to: " + this.value);
   showAvalanche(p[this.value]);
 });
