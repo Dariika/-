@@ -41,7 +41,7 @@ function polyHover(e){
 }
 
 function polyLeave(e){
-  if(e.target != currentPoly){
+  if(e.target != currentPlace.poly){
     e.target.setStyle(INACTIVE_POLYGON_STYLE);
   }
 }
