@@ -27,6 +27,7 @@ a{
 .error-message{
     background: rgb(242, 84, 99);
     border-radius: 6px;
+    max-width: 240px;
     border: 2px solid rgb(186, 53, 67);
     color: rgb(255, 227, 227);
     margin-top: -20px;

@@ -73,7 +73,7 @@ $("#register-submit-btn").click(function(){
         console.log(data);
         if(data.responseJSON != undefined){
             for(const [key, value] of Object.entries(data.responseJSON)){
-                $(`#${key}-error-msg`).text(value.join("<br>")).show();
+                $(`#${key}-error-msg`).html(value.join("<br>")).show();
             }
         }
     });
