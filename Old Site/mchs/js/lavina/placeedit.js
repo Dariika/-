@@ -29,13 +29,11 @@ function fetchPlaces(){
 }
 
 function fetchWeather(latlng){
-  $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${latlng.lat}&lon=${latlng.lng}&appid=${WEATHER_API_KEY}`)
-      .done(function(data){
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latlng.lat}&lon=${latlng.lng}&appid=${WEATHER_API_KEY}`)
+      .then(response => response.json())
+      .then(function(data){
         $('.weather__forecast').html(Math.round(data.main.temp - 273) + '&deg;C');
         $('.weather__icon').html(`<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" width=50 height=50>`);
-      })
-      .fail(function(data){
-        console.log("Weather fetch failed");
       });
 }
 
