@@ -85,10 +85,10 @@ function updatePlacesList(place, index){
     .appendTo("select");
 }
 
-function setCurrentPoly(poly){
-  currentPoly?.setStyle(INACTIVE_POLYGON_STYLE);
-  currentPoly = poly;
-  currentPoly.setStyle(ACTIVE_POLYGON_STYLE);
+function setCurrentPlace(place){
+  currentPlace?.poly.setStyle(INACTIVE_POLYGON_STYLE);
+  currentPlace = place;
+  currentPlace.poly.setStyle(ACTIVE_POLYGON_STYLE);
 }
 
 function showWeatherAndZoom(poly){
@@ -98,7 +98,7 @@ function showWeatherAndZoom(poly){
 }
 
 function showAvalanche(place) {
-    setCurrentPoly(place.poly);
+    setCurrentPlace(place);
     showWeatherAndZoom(place.poly);
 }
 
