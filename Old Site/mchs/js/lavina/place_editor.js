@@ -3,13 +3,15 @@ class PlaceEditor{
     constructor (map, 
                  onAddHandler, 
                  onUpdateHandler = null, 
-                 onDeleteHandler = null){
+                 onDeleteHandler = null,
+                 clippingRectangle = null){
         this.polygonCoords = [];
         this.markers = [];
         this.currentPoly = L.polygon(this.polygonCoords, {interactive: false, color: 'blue'});
         this.closePolygon = false;
         this.mode = "";
         this.map = map;
+        this.clippingRectangle = clippingRectangle;
         this.onAddHandler = onAddHandler;
         this.onUpdateHandler = onUpdateHandler;
         this.onDeleteHandler = onDeleteHandler;
@@ -70,6 +72,12 @@ class PlaceEditor{
     }
 
     __markerOnClick(e){
+
+        if(this.clippingRectangle != null && 
+            !this.clippingRectangle.getBounds().contains(e.latlng)){
+             return;
+        }
+
         let index = this.markers.indexOf(e.target);
         if(this.currentIndex == index){
             e.target.setStyle({color: 'blue'});
@@ -126,6 +134,11 @@ class PlaceEditor{
     }
 
     __addClickHandler(e){
+
+        if(this.clippingRectangle != null && 
+           !this.clippingRectangle.getBounds().contains(e.latlng)){
+            return;
+        }
 
         if(this.closePolygon){
             this.__removeHandlers(this.mode);

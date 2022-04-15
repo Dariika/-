@@ -71,4 +71,11 @@ function getElevation(latlng, ondonecallback, onfailcallback = null){
     __get(HOST + ELEVATION + `/${latlng[0]}/${latlng[1]}`, ondonecallback, onfailcallback)
 }
 
+function getClippingArea(ondonecallback, onfailcallback = null){
+    ondonecallback(L.rectangle([
+        [67.8414, 33.9],
+        [67.5460, 33.2282]
+      ], {fillOpacity: 0, color: "red"}));
+}
+
 fetchCsrf();

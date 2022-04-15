@@ -1,12 +1,23 @@
+const WEATHER_API_KEY = '5d20f14e98068a911f39ac24389c3aa5';
+
 let p = [];
 let currentPlace = null;
+let clippingArea = null;
+
+getClippingArea(function(area){
+  clippingArea = area;
+  clippingArea.addTo(map);
+  showWeatherAndZoom(clippingArea);
+});
 
 function fetchPlaces(){
     getPlaces(function(data){
         p = data;
         currentPlace = p[0];
+        showAvalanche(currentPlace);
         $.each(p, function (i, place) {
-            L.polygon(place.geometry.coordinates, { color: 'orange' }).addTo(map);
+            place.poly = L.polygon(place.geometry.coordinates, { color: 'orange' });
+            place.poly.addTo(map);
             updatePlacesList(place, i);
             if(place.heighest_point != null){
               L.marker(place.heighest_point.coordinates).addTo(map)
@@ -17,44 +28,49 @@ function fetchPlaces(){
     });
 }
 
+function fetchWeather(latlng){
+  $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${latlng.lat}&lon=${latlng.lng}&appid=${WEATHER_API_KEY}`)
+      .done(function(data){
+        $('.weather__forecast').html(Math.round(data.main.temp - 273) + '&deg;C');
+        $('.weather__icon').html(`<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" width=50 height=50>`);
+      })
+      .fail(function(data){
+        console.log("Weather fetch failed");
+      });
+}
 
 document.querySelector("select").addEventListener('change', function (e) {
   console.log("Changed to: " + e.target.value);
-  showAvalanche(e.target.value);
-  currentPlace = p[e.target.value];
+  showAvalanche(p[e.target.value]);
 })
 
 function updatePlacesList(place, index){
     $('<option />')
         .text(place.name)
         .attr({'value': index})
-        .on('change', function () { showAvalanche(index) })
+        .on('change', function () { showAvalanche(place) })
     .appendTo("select");
 }
 
-fetchPlaces();
-
-function showAvalanche(id) {
-    map.setView(p[id].geometry.coordinates[0][0], 12);
-    lat = p[id].geometry.coordinates[0][0][0];
-    lon = p[id].geometry.coordinates[0][0][1];
-    appkey = '5d20f14e98068a911f39ac24389c3aa5';
-    title = p[id].name;
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appkey}`).then(function (resp) { return resp.json() }).then(function (data) {
-        document.querySelector('.weather__forecast').innerHTML = Math.round(data.main.temp - 273) + '&deg;C';
-        document.querySelector('.weather__icon').innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" width=50 height=50>`;
-    })
-        .catch(function () {
-        //Обрабатываем ошибки
-        });
+function showWeatherAndZoom(poly){
+  let bounds = poly.getBounds();
+  fetchWeather(bounds.getCenter());
+  map.fitBounds(bounds);
 }
+
+function showAvalanche(place) {
+    currentPlace = place;
+    showWeatherAndZoom(place.poly);
+}
+
+fetchPlaces();
 
 let placeEditor = new PlaceEditor(map,
   function(polygon){
     $("#place-selected").show();
     $("#add-place-btn").val("Отметить заново");
     $("#submit-place-btn").attr('disabled', false);
-});
+}, null, null, clippingArea);
 
 
 $("#add-place-btn").click(function(){
