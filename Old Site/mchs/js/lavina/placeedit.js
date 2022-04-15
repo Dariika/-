@@ -1,4 +1,6 @@
 const WEATHER_API_KEY = '5d20f14e98068a911f39ac24389c3aa5';
+const INACTIVE_POLYGON_STYLE = { color: 'orange' };
+const ACTIVE_POLYGON_STYLE = { color: 'yellow' };
 
 let p = [];
 let currentPlace = null;
@@ -15,9 +17,11 @@ function fetchPlaces(){
         p = data;
         currentPlace = p[0];
         $.each(p, function (i, place) {
-            place.poly = L.polygon(place.geometry.coordinates, { color: 'orange' });
+            place.poly = L.polygon(place.geometry.coordinates, INACTIVE_POLYGON_STYLE);
+            place.poly.place_obj = place;
             place.poly.addTo(map);
             place.poly.bindTooltip(place.name, {'permanent': true});
+            installPolyHandlers(place.poly);
             updatePlacesList(place, i);
             if(place.heighest_point != null){
               L.marker(place.heighest_point.coordinates).addTo(map)
@@ -26,6 +30,31 @@ function fetchPlaces(){
         });
         showAvalanche(currentPlace);
     });
+}
+
+function polyHover(e){
+  e.target.setStyle(ACTIVE_POLYGON_STYLE);
+}
+
+function polyLeave(e){
+  e.target.setStyle(INACTIVE_POLYGON_STYLE);
+}
+
+function polyClick(e){
+  $("#place-select").prop("value", p.indexOf(e.target.place_obj));
+  showAvalanche(e.target.place_obj);
+}
+
+function installPolyHandlers(poly){
+  poly.on('mouseover', polyHover);
+  poly.on('mouseout', polyLeave);
+  poly.on('click', polyClick);
+}
+
+function removePolyHandlers(poly){
+  poly.off('mouseover', polyHover);
+  poly.off('mouseout', polyLeave);
+  poly.off('click', polyClick);
 }
 
 function fetchWeather(latlng){
@@ -37,10 +66,10 @@ function fetchWeather(latlng){
       });
 }
 
-document.querySelector("select").addEventListener('change', function (e) {
-  console.log("Changed to: " + e.target.value);
-  showAvalanche(p[e.target.value]);
-})
+$("#place-select").click(function(){
+  console.log("Changed to: " + this.value);
+  showAvalanche(p[this.value]);
+});
 
 function updatePlacesList(place, index){
     $('<option />')
@@ -50,6 +79,11 @@ function updatePlacesList(place, index){
     .appendTo("select");
 }
 
+function setCurrentPoly(poly){
+  currentPoly = poly;
+  currentPoly.setStyle(ACTIVE_POLYGON_STYLE);
+}
+
 function showWeatherAndZoom(poly){
   let bounds = poly.getBounds();
   fetchWeather(bounds.getCenter());
@@ -57,7 +91,7 @@ function showWeatherAndZoom(poly){
 }
 
 function showAvalanche(place) {
-    currentPlace = place;
+    setCurrentPoly(place.poly);
     showWeatherAndZoom(place.poly);
 }
 
