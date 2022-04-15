@@ -23,18 +23,5 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
   { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
 
-setDefault()
-
-$("#reg-toggle").toggleClass('tab-inactive');
-$("#in-toggle").toggleClass('tab-active');
-
-$(".vkladki-toggle").click(function(){
-  $("#in").toggle();
-  $("#reg").toggle();
-  $("#reg-toggle").toggleClass('tab-inactive');
-  $("#reg-toggle").toggleClass('tab-active');
-  $("#in-toggle").toggleClass('tab-active');
-  $("#in-toggle").toggleClass('tab-inactive');
-});
-
+setDefault();
 

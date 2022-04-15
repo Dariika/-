@@ -59,6 +59,21 @@ $("#overlay_img").click(function () {
     $("#overlay").toggle();
     clearForms();
 });
+
+// переключение вкладок 
+$("#reg-toggle").toggleClass('tab-inactive');
+$("#in-toggle").toggleClass('tab-active');
+
+$(".vkladki-toggle").click(function(){
+  $("#in").toggle();
+  $("#reg").toggle();
+  $("#reg-toggle").toggleClass('tab-inactive');
+  $("#reg-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-active');
+  $("#in-toggle").toggleClass('tab-inactive');
+  clearForms();
+});
+
   
 $("#register-submit-btn").click(function(){
     register($('#reg-form').serialize(), function(data){
