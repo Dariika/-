@@ -106,14 +106,16 @@
                 </div>
             </div>
             
-            <div class="in_sidebar employee_1 sbr">
-                <input type="button" id="calculate-current" value="Расчитать"></input>
-                <input type="button" id="add-downhill-marker" value="Отметить точку"></input>
+            <div class="in_sidebar employee_1 sbr" id="model-pane">
+                Моделирование схода:
+                <input type="button" id="calculate-current" value="Для текущего участка"></input>
+                <input type="button" id="add-downhill-marker" value="В произвольной точке"></input>
                 <input type="button" id="clear-downhill-marker" value="Очистить"></input><br>
                 <span style="color: white;" id="trace-status"></span>
             </div>
 
             <div id="add-pane" style="display: none;" class="in_sidebar employee_2 sbr">
+                Редактирование участков:
                 <div id="add"><br>
                     <div class="dobav-toggle">
                         <button>Добавить опасный участок</button>

@@ -31,6 +31,7 @@ function onUserLoad(data){
         $("#add-pane").show();
     }
     $("#current_user_fio").show();
+    $("#model-pane").show();
     $("#current_user_fio").text(`Добрый день, ${current_user.fio}`);
 }
 
@@ -40,6 +41,7 @@ function onLogout(data){
     $("#register-btn").show();
     $("#vixod").hide();
     $("#add-pane").hide();
+    $("#model-pane").hide();
     $("#current_user_fio").hide();
 }
 
