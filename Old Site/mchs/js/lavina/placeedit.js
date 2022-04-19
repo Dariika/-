@@ -4,12 +4,12 @@ const ACTIVE_POLYGON_STYLE = { color: 'yellow' };
 
 let p = [];
 let currentPlace = null;
-let clippingArea = null;
+let allowedRegion = null;
 
-getClippingArea(function(area){
-  clippingArea = area;
-  clippingArea.addTo(map);
-  showWeatherAndZoom(clippingArea);
+getAllowedRegion(function(data){
+  allowedRegion = L.rectangle(data["allowed_region"], {fillOpacity: 0, color: "red"});
+  allowedRegion.addTo(map);
+  showWeatherAndZoom(allowedRegion);
 });
 
 function showPlace(i, place, polyCoords){
@@ -21,7 +21,7 @@ function showPlace(i, place, polyCoords){
   updatePlacesList(place, i);
   if(place.heighest_point != null){
     L.marker(place.heighest_point.coordinates).addTo(map)
-        .bindTooltip(`Высота: ${place.heighest_elevation}`, {'permanent': true});
+        .bindTooltip(`Высота: ${place.heighest_elevation}`);
   }
 }
 
@@ -109,7 +109,7 @@ let placeEditor = new PlaceEditor(map,
     $("#place-selected").show();
     $("#add-place-btn").val("Отметить заново");
     $("#submit-place-btn").attr('disabled', false);
-}, null, null, clippingArea);
+}, null, null, allowedRegion);
 
 
 $("#add-place-btn").click(function(){
@@ -172,6 +172,9 @@ $("#submit-place-btn").click(function(){
              },
              function(data){
                // TODO:
+                if(data.responseJSON != undefined){
+                  console.log(data);
+                }
                 alert("Не удалось добавить");
                 placeEditor.clearPoly();
              });
