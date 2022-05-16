@@ -6,6 +6,7 @@ LOGOUT = "/logout"
 WHOAMI = "/whoami"
 PLACES = "/places"
 ELEVATION = "/elevation_around"
+EXP = "/exp_elevation"
 ALLOWED_REGION = "/allowed_region"
 
 function __post(url, data, ondonecallback, onfailcallback = null){
@@ -85,6 +86,10 @@ function getPlaces(ondonecallback, type_id = 1, onfailcallback = null) {
 
 function getElevation(latlng, ondonecallback, onfailcallback = null){
     __get(HOST + ELEVATION + `/${latlng[0]}/${latlng[1]}`, ondonecallback, onfailcallback)
+}
+
+function elevationExp(latlng, fraction, ondonecallback, onfailcallback = null){
+    __get(HOST + EXP_ELEVATION + `/${latlng[0]}/${latlng[1]}/${fraction}`, ondonecallback, onfailcallback)
 }
 
 function getAllowedRegion(ondonecallback, onfailcallback = null){

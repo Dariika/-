@@ -1,5 +1,6 @@
 let currentMarker = L.marker([0, 0])
 let polyline = null;
+let polyline2 = null;
 let tracedPath = [];
 let sameElevationCount = 0;
 
@@ -13,6 +14,7 @@ function onClick(e){
     getElevation([e.latlng.lat, e.latlng.lng], choosePath, function(error){
         console.log(error);
     }); 
+    exp([e.latlng.lat, e.latlng.lng]);
 }
 
 function choosePath(response){
@@ -108,6 +110,64 @@ $("#calculate-current").click(function(){
     }); 
 });
 
+function exp(coords){
+    let fraction = $("#fraction").val();
+    if(polyline2 != null){
+        map.removeLayer(polyline2);
+        polyline = null;
+    }
+    elevationExp(coords, fraction, function(data){
+        if(data[1].length == 0){
+            alert("Нет данных");
+            return;
+        }
+        coords = [data[0][0]]
+        polyline2 = L.polyline(coords, {color: 'magenta'});
+        polyline2.addTo(map);
+        schedule_timer(1, data, coords, polyline2);
+
+    }, function(error){
+        alert("Ошибка!");
+    });
+}
+
+$("#exp").click(function(){
+    exp(currentPlace.heighest_point.coordinates);
+});
+
+function schedule_timer(i, data, coords, polyline){
+    if(data[1].length < i)
+        return;
+    coords.push(data[0][i]);
+    let info = data[1][i-1];
+    let fps = 1000 / 60;
+    let speedCoff = 0.01;
+    let frames = Math.round(info.time * speedCoff * 1000 / fps);
+    if(frames == 0){
+        let timerId = setTimeout(function (){
+            coords[coords.length-1] = data[0][i];
+            polyline.setLatLngs(coords);
+            schedule_timer(++i, data, coords, polyline);
+        }, fps);
+        return;
+    }
+    let deltaX = (data[0][i][0] - data[0][i - 1][0]) * 10000 / frames;
+    let deltaY = (data[0][i][1] - data[0][i - 1][1]) * 10000/ frames;
+    let frameCounter = 0;
+    let timerId = setTimeout(function drawFrame(){
+        coords[coords.length-1][0] = (deltaX*frameCounter + data[0][i - 1][0] * 10000) / 10000;
+        coords[coords.length-1][1] = (deltaY*frameCounter + data[0][i - 1][1] * 10000) / 10000;
+        polyline.setLatLngs(coords);
+        frameCounter++;
+        if(frameCounter < frames){
+            timerId = setTimeout(drawFrame, fps);
+        }
+        else{
+            clearTimeout(timerId);
+            schedule_timer(++i, data, coords, polyline);
+        }
+    }, fps);
+}
 
 function clearMap(){
     tracedPath = [];
@@ -118,6 +178,10 @@ function clearMap(){
     if(polyline != null){
         map.removeLayer(polyline);
         polyline = null;
+    }
+    if(polyline2 != null){
+        map.removeLayer(polyline2);
+        polyline2 = null;
     }
 }
 
