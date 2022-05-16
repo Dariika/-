@@ -117,20 +117,11 @@ let placeEditor = new PlaceEditor(map,
     $("#submit-place-btn").attr('disabled', false);
 });
 
-
-function removeAllPolyHandlers(){
-  // удаляем обработчики у полигонов на время добавления/редактирования
-  p.forEach(function(value, index){
-    removePolyHandlers(value.poly);
-  });
-}
-
 $("#add-place-btn").click(function(){
     if(mode == ""){
       mode = "add";
     }
     $("#place-selected").hide();
-    removeAllPolyHandlers();
     placeEditor.startAdd();
     $("#submit-place-btn").attr('disabled', true);
 });
@@ -145,7 +136,6 @@ $("#edit-btn").click(function () {
   openClosePlaceAddPane();
   // copy
   oldPolyLatLngs = [currentPlace.poly.getLatLngs()[0].map(e => e)];
-  removeAllPolyHandlers();
   $("input[name=place-name]").val(currentPlace.name);
   $("#add-place-btn").val("Отметить заново");
   map.removeLayer(currentPlace.poly);
@@ -156,7 +146,14 @@ $("#edit-btn").click(function () {
 $(".dobav-toggle").click(openClosePlaceAddPane);
 
 function openClosePlaceAddPane(){
-  $("#dobav").toggle();
+  
+  p.forEach(function(value, index){
+    // удаляем или возвращаем обработчики у полигонов на время добавления/редактирования
+   $("#dobav").is(":visible") ?  installPolyHandlers(value.poly) : removePolyHandlers(value.poly);
+ });
+
+ $("#dobav").toggle();
+
   placeEditor.stopEditing();
   $("#place-selected").hide();
   $("input[name=place-name]").val("");
@@ -170,6 +167,7 @@ function openClosePlaceAddPane(){
     currentPlace.poly.addTo(map);
     oldPolyLatLngs = [];
   }
+
 }
 
 function onPlaceApiFail(data){
@@ -208,10 +206,6 @@ $("#submit-place-btn").click(function(){
     if(mode == "add"){
       addPlace(data,
         function(data){
-          // возвращаем обработчики 
-           p.forEach(function(value, index){
-             installPolyHandlers(value.poly);
-           });
            p.push(data);
            addPlaceToMap(p.length-1, data);
            showAvalanche(data);
@@ -228,10 +222,6 @@ $("#submit-place-btn").click(function(){
                         p.indexOf(currentPlace));
         showAvalanche(currentPlace);
         oldPolyLatLngs = [];
-        // возвращаем обработчики 
-        p.forEach(function(value, index){
-          installPolyHandlers(value.poly);
-        });
         openClosePlaceAddPane();
       }, onPlaceApiFail)
       mode = "";
