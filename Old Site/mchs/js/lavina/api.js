@@ -89,7 +89,7 @@ function getElevation(latlng, ondonecallback, onfailcallback = null){
 }
 
 function elevationExp(latlng, fraction, ondonecallback, onfailcallback = null){
-    __get(HOST + EXP_ELEVATION + `/${latlng[0]}/${latlng[1]}/${fraction}`, ondonecallback, onfailcallback)
+    __get(HOST + EXP + `/${latlng[0]}/${latlng[1]}/${fraction}`, ondonecallback, onfailcallback)
 }
 
 function getAllowedRegion(ondonecallback, onfailcallback = null){
