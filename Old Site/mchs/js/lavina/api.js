@@ -17,6 +17,15 @@ function __post(url, data, ondonecallback, onfailcallback = null){
     .fail(onfailcallback);
 }
 
+function __encodePost(data){
+    let params = [];
+    for(const [key, value] of Object.entries(data)){
+        params.push(`${key}=${typeof value != 'object' ? 
+                                    value.toString(): JSON.stringify(value)}`);
+    }
+    return params.join("&");
+}
+
 function __get(url, ondonecallback, onfailcallback = null){
     $.ajax({
         'url': url,
@@ -61,7 +70,13 @@ function login(data, ondonecallback, onfailcallback = null){
 }
 
 function addPlace(data, ondonecallback, onfailcallback = null){
-    __post(HOST + PLACES, data, ondonecallback, onfailcallback);
+    __post(HOST + PLACES, __encodePost(data), ondonecallback, onfailcallback);
+}
+
+function updatePlace(id, data, ondonecallback, onfailcallback = null){
+    $.ajax({'url': HOST + PLACES + `/${id}`, 'method': "PUT", "data": __encodePost(data)})
+        .done(ondonecallback)
+        .fail(onfailcallback);
 }
 
 function getPlaces(ondonecallback, type_id = 1, onfailcallback = null) {

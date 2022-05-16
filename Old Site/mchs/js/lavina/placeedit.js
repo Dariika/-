@@ -4,25 +4,34 @@ const ACTIVE_POLYGON_STYLE = { color: 'yellow' };
 
 let p = [];
 let currentPlace = null;
+let oldPolyLatLngs = [];
 let allowedRegion = null;
+let mode = "";
 
-getAllowedRegion(function(data){
-  allowedRegion = L.rectangle(data["allowed_region"], {fillOpacity: 0, color: "red"});
-  allowedRegion.addTo(map);
-  showWeatherAndZoom(allowedRegion);
-});
-
-function showPlace(i, place, polyCoords){
-  place.poly = L.polygon(polyCoords, INACTIVE_POLYGON_STYLE);
+function addPlaceToMap(i, place){
+  place.poly = L.polygon(place.geometry.coordinates, INACTIVE_POLYGON_STYLE);
   place.poly.place_obj = place;
   place.poly.addTo(map);
   place.poly.bindTooltip(place.name, {'permanent': true});
   installPolyHandlers(place.poly);
   updatePlacesList(place, i);
   if(place.heighest_point != null){
-    L.marker(place.heighest_point.coordinates).addTo(map)
-        .bindTooltip(`Высота: ${place.heighest_elevation}`);
+    place.marker = L.marker(place.heighest_point.coordinates);
+    place.marker.addTo(map)
+    place.marker.bindTooltip(`Высота: ${place.heighest_elevation}`);
   }
+}
+
+function updatePlaceOnMap(place, data, index){
+  place.poly.setLatLngs(data.geometry.coordinates);
+  place.poly.addTo(map);
+  place.name = data.name;
+  place.heighest_point = data.heighest_point;
+  place.heighest_elevation = data.heighest_elevation;
+  place.poly.setTooltipContent(place.name);
+  place.marker.setLatLng(place.heighest_point.coordinates);
+  place.marker.setTooltipContent(`Высота: ${place.heighest_elevation}`);
+  $(`#place-select option[value=${index}]`).text(place.name);
 }
 
 function fetchPlaces(){
@@ -30,7 +39,7 @@ function fetchPlaces(){
         p = data;
         currentPlace = p[0];
         $.each(p, function (i, place) {
-           showPlace(i, place, place.geometry.coordinates);
+           addPlaceToMap(i, place);
         });
         showAvalanche(currentPlace);
     });
@@ -72,7 +81,6 @@ function fetchWeather(latlng){
 }
 
 $("#place-select").on("change", function(){
-  console.log("Changed to: " + this.value);
   showAvalanche(p[this.value]);
 });
 
@@ -81,7 +89,7 @@ function updatePlacesList(place, index){
         .text(place.name)
         .attr({'value': index})
         .on('change', function () { showAvalanche(place) })
-    .appendTo("select");
+    .appendTo("#place-select");
 }
 
 function setCurrentPlace(place){
@@ -102,39 +110,75 @@ function showAvalanche(place) {
     $("#place-select").prop("value", p.indexOf(place));
 }
 
-fetchPlaces();
-
 let placeEditor = new PlaceEditor(map,
-  function(polygon){
+  function(){
     $("#place-selected").show();
     $("#add-place-btn").val("Отметить заново");
     $("#submit-place-btn").attr('disabled', false);
-}, null, null, allowedRegion);
+});
 
+
+function removeAllPolyHandlers(){
+  // удаляем обработчики у полигонов на время добавления/редактирования
+  p.forEach(function(value, index){
+    removePolyHandlers(value.poly);
+  });
+}
 
 $("#add-place-btn").click(function(){
+    if(mode == ""){
+      mode = "add";
+    }
     $("#place-selected").hide();
-    // удаляем обработчики у полигонов на время добавления
-    p.forEach(function(value, index){
-      removePolyHandlers(value.poly);
-    })
+    removeAllPolyHandlers();
     placeEditor.startAdd();
     $("#submit-place-btn").attr('disabled', true);
 });
 
-
 $("#edit-btn").click(function () {
-  placeEditor.startEdit(polygons[polygons.length - 1]);
+  // TODO: фильтр
+  if(current_user.username != "admin" && currentPlace.owner != current_user.id){
+    alert("Вы можете редактировать только свои участки");
+    return;
+  }
+  mode = "update";
+  openClosePlaceAddPane();
+  // copy
+  oldPolyLatLngs = [currentPlace.poly.getLatLngs()[0].map(e => e)];
+  removeAllPolyHandlers();
+  $("input[name=place-name]").val(currentPlace.name);
+  $("#add-place-btn").val("Отметить заново");
+  map.removeLayer(currentPlace.poly);
+  placeEditor.startEdit(currentPlace.poly);
+  $("#submit-place-btn").attr('disabled', false);
 });
 
 $(".dobav-toggle").click(openClosePlaceAddPane);
 
 function openClosePlaceAddPane(){
   $("#dobav").toggle();
-  placeEditor.clearPoly();
+  placeEditor.stopEditing();
   $("#place-selected").hide();
+  $("input[name=place-name]").val("");
   $("#add-place-btn").val("Отметить место на карте");
   $("#submit-place-btn").attr('disabled', true);
+  // если старые координаты места не пусты,
+  // то пользователь закрывает форму без сохранения (нажал "отмена")
+  // надо установить для текущего места старые координаты
+  if(oldPolyLatLngs.length > 0){
+    currentPlace.poly.setLatLngs(oldPolyLatLngs);
+    currentPlace.poly.addTo(map);
+    oldPolyLatLngs = [];
+  }
+}
+
+function onPlaceApiFail(data){
+  // TODO:
+  if(data.responseJSON != undefined){
+    console.log(data);
+  }
+  alert("Не удалось добавить/изменить");
+  placeEditor.stopEditing();
 }
 
 $("#submit-place-btn").click(function(){
@@ -148,34 +192,62 @@ $("#submit-place-btn").click(function(){
       alert("Выберите участок на карте!");
       return;
     }
-    let poly = {
-      "type": "Polygon",
-      "coordinates": [
-        placeEditor.currentPoly.getLatLngs()[0].map(value => [value.lat, value.lng])
-      ]
-    };
-    // в geoJson первая точка должна повторяться в конце
-    poly.coordinates[0].push([placeEditor.currentPoly.getLatLngs()[0][0].lat, 
-                              placeEditor.currentPoly.getLatLngs()[0][0].lng]);
-    addPlace(`name=${placeName}&`+
-             `place_type=1&`+
-             `geometry=${JSON.stringify(poly)}`,
-             function(data){
-               // возвращаем обработчики 
-                p.forEach(function(value, index){
-                  installPolyHandlers(value.poly);
-                });
-                p.push(data);
-                showPlace(p.length-1, data, placeEditor.currentPoly.getLatLngs());
-                showAvalanche(data);
-                openClosePlaceAddPane();
-             },
-             function(data){
-               // TODO:
-                if(data.responseJSON != undefined){
-                  console.log(data);
-                }
-                alert("Не удалось добавить");
-                placeEditor.clearPoly();
-             });
+
+    let coords = placeEditor.stopEditing();
+     // в geoJson первая точка должна повторяться в конце
+    coords.push([coords[0][0], coords[0][1]]);
+  
+    let data = {'name': placeName, 
+            'place_type': 1, 
+            'geometry': {
+              "type": "Polygon",
+              "coordinates": [coords]
+            }
+          };
+
+    if(mode == "add"){
+      addPlace(data,
+        function(data){
+          // возвращаем обработчики 
+           p.forEach(function(value, index){
+             installPolyHandlers(value.poly);
+           });
+           p.push(data);
+           addPlaceToMap(p.length-1, data);
+           showAvalanche(data);
+           openClosePlaceAddPane();
+           mode = "";
+        },
+        onPlaceApiFail);
+    }
+    else{
+      
+      updatePlace(currentPlace.id, data, function(data){
+        updatePlaceOnMap(currentPlace, 
+                        data, 
+                        p.indexOf(currentPlace));
+        showAvalanche(currentPlace);
+        oldPolyLatLngs = [];
+        // возвращаем обработчики 
+        p.forEach(function(value, index){
+          installPolyHandlers(value.poly);
+        });
+        openClosePlaceAddPane();
+      }, onPlaceApiFail)
+      mode = "";
+    }
+    
   });
+
+window.addEventListener("load", function(event) {
+
+  getAllowedRegion(function(data){
+    allowedRegion = L.rectangle(data["allowed_region"], {fillOpacity: 0, color: "red"});
+    allowedRegion.addTo(map);
+    showWeatherAndZoom(allowedRegion);
+    placeEditor.setClippingRectangle(allowedRegion);
+  });
+
+  fetchPlaces();
+
+});

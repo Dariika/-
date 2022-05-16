@@ -11,8 +11,6 @@ $("#reg-form input[type!=button]").each(function(index){
       .insertAfter($(this).next());
 });
 
-tryFetchCurrentUser(onUserLoad, onLogout);
-
 $("#vixod").click(function(){
     if(user != null){
       logout(onLogout);
@@ -114,4 +112,8 @@ $("#login-submit-btn").click(function () {
         console.log("login failed");
         console.log(data);
     });
+});
+
+window.addEventListener("load", function(event) {
+    tryFetchCurrentUser(onUserLoad, onLogout);
 });

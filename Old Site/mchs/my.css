@@ -263,6 +263,10 @@ input[type=button] {
     background-color: #6C95C3;
 }
 
+input[type=button]:disabled{
+    background-color: #6a7f97;
+}
+
 #forms label {
     font-size: 16pt;
 }

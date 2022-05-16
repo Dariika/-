@@ -1,20 +1,15 @@
 class PlaceEditor{
   
     constructor (map, 
-                 onAddHandler, 
-                 onUpdateHandler = null, 
-                 onDeleteHandler = null,
-                 clippingRectangle = null){
+                 onAddHandler){
         this.polygonCoords = [];
         this.markers = [];
         this.currentPoly = L.polygon(this.polygonCoords, {interactive: false, color: 'blue'});
         this.closePolygon = false;
         this.mode = "";
         this.map = map;
-        this.clippingRectangle = clippingRectangle;
+        this.clippingRectangle = null;
         this.onAddHandler = onAddHandler;
-        this.onUpdateHandler = onUpdateHandler;
-        this.onDeleteHandler = onDeleteHandler;
         this._a = this.__addMoveHandler.bind(this);
         this._b = this.__addClickHandler.bind(this);
         this._c = this.__addRightClick.bind(this);
@@ -24,13 +19,23 @@ class PlaceEditor{
         this.editing = false;
     }
 
-    clearPoly(){
-        if(this.map.hasLayer(this.currentPoly)){
-            this.map.removeLayer(this.currentPoly);
+    setClippingRectangle(rectangle){
+        this.clippingRectangle = rectangle;
+    }
+
+    stopEditing(){
+        for(const marker of this.markers){
+            this.map.removeLayer(marker);
         }
+        this.map.removeLayer(this.currentPoly);
+        let coords = this.polygonCoords;
         this.polygonCoords = [];
         this.currentPoly.setLatLngs(this.polygonCoords);
-        this.editing = true;
+        this.__removeHandlers();
+        this.markers = [];
+        this.polygonCoords = [];
+        this.editing = false;
+        return coords;
     }
 
     isPolyDone(){
@@ -39,33 +44,32 @@ class PlaceEditor{
 
     startAdd(){
         this.mode = "add";
+        this.stopEditing();
         this.markers.push(L.circleMarker([0, 0]));
         this.markers[0].addTo(map);
+        this.markers[0].bindTooltip(`0`, {'offset': [10,0]}).openTooltip();
         this.currentIndex = 0;
-        this.clearPoly();
-        this.__installHandlers(this.mode);
+        this.__installHandlers();
     }
 
     startEdit(polygon){
         this.mode = "update";
-        this.polygonCoords = polygon.getLatLngs();
-        this.currentPoly = polygon;
-        this.__createMarkers(polygon);
+        this.polygonCoords = polygon.getLatLngs()[0].map(value => [value.lat, value.lng]);
+        this.currentPoly.setLatLngs(this.polygonCoords);
+        this.__createMarkers();
+        this.currentPoly.addTo(this.map);
     }
 
-    __installHandlers(mode){
+    __installHandlers(){
         this.map.on('mousemove', this._a);
         this.map.on('click', this._b);
         this.map.on('contextmenu', this._c);
     }
 
-    __removeHandlers(mode){
+    __removeHandlers(){
         this.map.off('mousemove', this._a);
         this.map.off('click', this._b);
         this.map.off('contextmenu', this._c);
-    }
-
-    __removeEditHandlers(marker){
         this.currentIndex = -1;
         this.map.off('mousemove', this._d);
         this.map.off('contextmenu', this._c);
@@ -81,22 +85,22 @@ class PlaceEditor{
         let index = this.markers.indexOf(e.target);
         if(this.currentIndex == index){
             e.target.setStyle({color: 'blue'});
-            this.__removeEditHandlers(e.target);
+            this.__removeHandlers();
         }
         else{
             e.target.setStyle({color: 'red'});
             this.currentIndex = index;
-            console.log(this.currentIndex);
             this.map.on('mousemove', this._d);
             this.map.on('contextmenu', this._c);
         }
     }
 
-    __createMarkers(polygon){
-        for(const coords of polygon.getLatLngs()){
-            let marker = L.circleMarker(coords);
+    __createMarkers(){
+        for(let latlng of this.polygonCoords){
+            let marker = L.circleMarker(latlng);
             marker.addTo(this.map);
             marker.on('click', this._markerClick);
+            marker.bindTooltip(this.__coordsToStr({lat: latlng[0], lng: latlng[1]}),{'offset': [10,0]});
             this.markers.push(marker);
         }
     }
@@ -104,10 +108,18 @@ class PlaceEditor{
     __defaultMoveHandler(e){
         let coords = [e.latlng.lat, e.latlng.lng]
         this.markers[this.currentIndex].setLatLng(coords);
+        this.markers[this.currentIndex].setTooltipContent(this.__coordsToStr(e.latlng));
         if(this.polygonCoords.length > 1){
             this.polygonCoords[this.currentIndex] = coords;
             this.currentPoly.setLatLngs(this.polygonCoords);
         }
+    }
+
+    __coordsToStr(latlng, n=5){
+        // округление до n знаков после запятой
+        let f = Math.pow(10, n);
+        return `${Math.round(latlng.lat*f)/f}, `+
+               `${Math.round(latlng.lng*f)/f}`;
     }
 
     __addMoveHandler(e){
@@ -124,14 +136,7 @@ class PlaceEditor{
         }
     }
 
-    __stopEditing(){
-        for(const marker of this.markers){
-            this.map.removeLayer(marker);
-        }
-        this.markers = [];
-        this.editing = false;
-        return this.currentPoly;
-    }
+    
 
     __addClickHandler(e){
 
@@ -141,14 +146,21 @@ class PlaceEditor{
         }
 
         if(this.closePolygon){
-            this.__removeHandlers(this.mode);
             this.polygonCoords.pop();
-            this.onAddHandler(this.__stopEditing());
+            this.map.removeLayer(this.markers.pop());
+            this.__removeHandlers();
+            this.mode = "update";
+            for(let marker of this.markers){
+                marker.on('click', this._markerClick);
+            }
+            this.onAddHandler();
         }
         else{
             let marker = L.circleMarker(e.latlng);
+            marker.bindTooltip(this.__coordsToStr(e.latlng),{'offset': [10,0]}).openTooltip();
             marker.addTo(this.map);
             this.markers.push(marker);
+            this.markers[this.currentIndex].closeTooltip();
             this.polygonCoords.push([e.latlng.lat, e.latlng.lng]);
             if(this.polygonCoords.length == 1){
                 this.currentPoly.addTo(this.map);
@@ -172,7 +184,7 @@ class PlaceEditor{
                 this.currentIndex = this.markers.length - 1;
             }
             else{
-                this.__removeEditHandlers(currentMarker);
+                this.__removeHandlers();
                 this.currentIndex = -1;
             }
             this.currentPoly.setLatLngs(this.polygonCoords);
