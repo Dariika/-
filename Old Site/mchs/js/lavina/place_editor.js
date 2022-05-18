@@ -254,6 +254,7 @@ class PlaceEditor{
             for(let marker of this.markers){
                 marker.on('click', this._markerClick);
             }
+            this.map.on('mousemove', this._edit);
             this.onAddHandler();
         }
         else{
